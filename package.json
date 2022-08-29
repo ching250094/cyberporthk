@@ -1,7 +1,7 @@
 {
   "name": "cyberport",
   "version": "0.1.0",
-  "homepage": "https://ching250094.github.io/cyberporthk",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "react": "17.0.2",
