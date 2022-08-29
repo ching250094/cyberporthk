@@ -18,6 +18,8 @@ const headingCss = css`
     }
 `
 
+/* eslint-disable jsx-a11y/alt-text */
+
 export default function CyberportCommunity() {
     return (
         <MainContainer heading='CYBERPORT COMMUNITY' renderImage={() => renderImage()} css={headingCss}>

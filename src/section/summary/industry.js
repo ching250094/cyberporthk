@@ -36,6 +36,8 @@ const headingCss = css`
     }
 `
 
+/* eslint-disable jsx-a11y/alt-text */
+
 export default function IndustryDevelopment() {
     return (
         <MainContainer heading='INDUSTRY DEVELOPMENT' renderImage={() => renderImage()} css={headingCss}>
