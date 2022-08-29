@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import CoverSection from './section/cover'
 import SloganSection from './section/slogan'
 import AnnualSummary from './section/summary'

@@ -16,6 +16,8 @@ const headingCss = css`
     }
 `
 
+/* eslint-disable jsx-a11y/alt-text */
+
 export default function CyberportCommunity() {
     return (
         <MainContainer heading='TALENT CULTIVATION' renderImage={() => renderImage()} css={headingCss}>
