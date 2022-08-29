@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useEffect } from 'react'
+import CoverSection from './section/cover'
+import SloganSection from './section/slogan'
+import AnnualSummary from './section/summary'
+import Directors from './section/directors'
 
 function App() {
+  const coverRefs = useRef()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="app">
+      <CoverSection ref={coverRefs} />
+      <SloganSection />
+      <AnnualSummary />
+      <Directors />
+    </div >
   );
 }
 
