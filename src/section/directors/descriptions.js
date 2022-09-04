@@ -6,10 +6,11 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     height: 100vh;
-    background: url(${DirectorsBg});
+    background-image: url(${DirectorsBg});
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background: linear-gradient(360deg, rgba(12,119,247,1) 14%, rgba(80,157,249,1) 35%, rgba(118,180,255,1) 47%, rgba(167,206,255,1) 65%, rgba(198,223,255,1) 78%, rgba(220,235,255,1) 89%);
 `
 
 const Contents = styled.div`
