@@ -1,18 +1,23 @@
-import React, { useRef } from 'react'
 import CoverSection from './section/cover'
 import SloganSection from './section/slogan'
 import AnnualSummary from './section/summary'
 import Directors from './section/directors'
+import Circles from './section/circles'
+import Esg from './section/esg'
+import Governance from './section/governance'
+import LookingAhead from './section/ahead'
 
 function App() {
-  const coverRefs = useRef()
 
   return (
     <div className="app">
-      <CoverSection ref={coverRefs} />
+      <CoverSection />
       <SloganSection />
       <AnnualSummary />
       <Directors />
+      <Circles />
+      <Esg />
+      <Governance />
     </div >
   );
 }

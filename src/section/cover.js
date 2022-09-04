@@ -1,4 +1,3 @@
-import { forwardRef } from 'react'
 import styled from 'styled-components'
 import CyberportSvg from '../assets/images/cyberportLogo.svg'
 
@@ -7,7 +6,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    background: linear-gradient(90deg, rgba(255,255,255,1) 16%, rgba(144,178,245,1) 45%, rgba(255,255,255,1) 79%);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(231,239,255,1) 11%, rgba(205,222,255,1) 24%, rgba(196,216,255,1) 33%, rgba(163,194,255,1) 40%, rgba(163,194,255,1) 55%, rgba(205,222,255,1) 72%, rgba(231,239,255,1) 88%, rgba(255,255,255,1) 100%);
 `
 
 const CyberportLogo = styled.img.attrs({ src: CyberportSvg })`
@@ -20,7 +19,8 @@ const CyberportLogo = styled.img.attrs({ src: CyberportSvg })`
 const TitleContainer = styled.div`
     font-size: 5.5rem;
     font-weight:800;
-    align-self: center;
+    margin-left: 10%;
+    margin-bottom: 10%;
     line-height: 1.2;
     color: #0955AD;
     * + * {
@@ -36,11 +36,9 @@ const SubTitleContainer = styled.div`
     color: #FFFFFF;
 `
 
-const CoverSection = forwardRef((_, ref) => {
-    console.log(ref)
-
+export default function CoverSection() {
     return (
-        <Container ref={ref}>
+        <Container>
             <CyberportLogo />
             <TitleContainer>
                 <div>Cyberport</div>
@@ -53,6 +51,4 @@ const CoverSection = forwardRef((_, ref) => {
         </Container>
 
     )
-});
-
-export default CoverSection
+}
