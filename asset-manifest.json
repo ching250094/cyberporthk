@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.js": "/cyberporthk/static/js/main.4406c5c7.js",
-    "static/media/left.svg": "/cyberporthk/static/media/left.5cbcc159ea1527c52e3df072d4579ca8.svg",
-    "static/media/right.svg": "/cyberporthk/static/media/right.039c6e473fd98b4fa88d61c194625940.svg",
-    "static/media/middle.svg": "/cyberporthk/static/media/middle.abb16a6cc61e88e68c9a9ed30b2481e4.svg",
+    "main.js": "/cyberporthk/static/js/main.c084f30c.js",
+    "static/media/video.mp4": "/cyberporthk/static/media/video.f731804ca3532c130bdb.mp4",
     "static/media/background.svg": "/cyberporthk/static/media/background.ae664fe2ff1154d19c6a1cac0b610a62.svg",
+    "static/media/asset_2.png": "/cyberporthk/static/media/asset_2.5380c33528bf41e6a1fd.png",
+    "static/media/asset_1.png": "/cyberporthk/static/media/asset_1.b80154cf852631c1e2c4.png",
+    "static/media/asset_3.png": "/cyberporthk/static/media/asset_3.b19ade11c2a2ab22ba4b.png",
     "static/media/col_1_3.svg": "/cyberporthk/static/media/col_1_3.394618d14d38334bb4f38c0efe267810.svg",
     "static/media/col_2_3.svg": "/cyberporthk/static/media/col_2_3.394618d14d38334bb4f38c0efe267810.svg",
     "static/media/col_3_3.svg": "/cyberporthk/static/media/col_3_3.394618d14d38334bb4f38c0efe267810.svg",
@@ -43,9 +44,9 @@
     "static/media/bg_economies.svg": "/cyberporthk/static/media/bg_economies.a94c1883bfef5fce5d17e99f83c02edd.svg",
     "static/media/widget_3.svg": "/cyberporthk/static/media/widget_3.fe381093c278a07d3cc6ea6b6a6c1fd4.svg",
     "index.html": "/cyberporthk/index.html",
-    "main.4406c5c7.js.map": "/cyberporthk/static/js/main.4406c5c7.js.map"
+    "main.c084f30c.js.map": "/cyberporthk/static/js/main.c084f30c.js.map"
   },
   "entrypoints": [
-    "static/js/main.4406c5c7.js"
+    "static/js/main.c084f30c.js"
   ]
 }
