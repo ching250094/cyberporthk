@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/cyberporthk/static/js/main.c084f30c.js",
-    "static/media/video.mp4": "/cyberporthk/static/media/video.f731804ca3532c130bdb.mp4",
+    "main.js": "/cyberporthk/static/js/main.709bd5d5.js",
+    "static/media/video.mp4": "/cyberporthk/static/media/video.4bbf6295935e90e73d97.mp4",
     "static/media/background.svg": "/cyberporthk/static/media/background.ae664fe2ff1154d19c6a1cac0b610a62.svg",
     "static/media/asset_2.png": "/cyberporthk/static/media/asset_2.5380c33528bf41e6a1fd.png",
     "static/media/asset_1.png": "/cyberporthk/static/media/asset_1.b80154cf852631c1e2c4.png",
@@ -44,9 +44,9 @@
     "static/media/bg_economies.svg": "/cyberporthk/static/media/bg_economies.a94c1883bfef5fce5d17e99f83c02edd.svg",
     "static/media/widget_3.svg": "/cyberporthk/static/media/widget_3.fe381093c278a07d3cc6ea6b6a6c1fd4.svg",
     "index.html": "/cyberporthk/index.html",
-    "main.c084f30c.js.map": "/cyberporthk/static/js/main.c084f30c.js.map"
+    "main.709bd5d5.js.map": "/cyberporthk/static/js/main.709bd5d5.js.map"
   },
   "entrypoints": [
-    "static/js/main.c084f30c.js"
+    "static/js/main.709bd5d5.js"
   ]
 }
