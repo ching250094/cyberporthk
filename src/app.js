@@ -18,6 +18,7 @@ function App() {
       <Circles />
       <Esg />
       <Governance />
+      {/* <LookingAhead /> */}
     </div >
   );
 }
