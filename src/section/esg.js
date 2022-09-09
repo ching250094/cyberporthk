@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Controller, Scene } from 'react-scrollmagic'
 import { Tween, Timeline } from 'react-gsap'
 import gsap from 'gsap'
 import { useRef, memo, useEffect, forwardRef } from 'react'
-import BackgroundSvg from '../assets/images/esg/background.svg'
+import BackgroundSvg from '../assets/images/esg/background.png'
 import widget_1 from '../assets/images/esg/widget_1.svg'
 import widget_2 from '../assets/images/esg/widget_2.svg'
 import widget_3 from '../assets/images/esg/widget_3.svg'
@@ -12,6 +12,11 @@ import widget_5 from '../assets/images/esg/widget_5.svg'
 import point_1 from '../assets/images/esg/point_1.svg'
 import point_2 from '../assets/images/esg/point_2.svg'
 import point_3 from '../assets/images/esg/point_3.svg'
+import earthImg from '../assets/images/esg/earth_1.png'
+import recyclingImg from '../assets/images/esg/recycling.png'
+import sustainableImg from '../assets/images/esg/sustainable.png'
+import roomImg from '../assets/images/esg/room.png'
+import parkingImg from '../assets/images/esg/parking.png'
 
 const Container = styled.div`
     position :relative;
@@ -33,28 +38,57 @@ const Container = styled.div`
 `
 
 const EarthContainer = styled.div`
-    background: url(${BackgroundSvg});
-    background-position: bottom;
-    background-repeat: no-repeat;
-    position: sticky;
     height: 100%;
     width: 100%;
     display flex;
+
 `
 
+const Background = styled.div`
+    background: url(${BackgroundSvg});
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    position: sticky;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+`
+
+
 const Widget = styled.img`
-      width: ${p => p.width}%;
-      height: ${p => p.height}%;
-      position: absolute;
-      bottom: ${p => p.bottom}%;
-      left: ${p => p.left}%;
+    width: ${p => p.width}%;
+    height: ${p => p.height}%;
+    position: absolute;
+    bottom: ${p => p.bottom}%;
+    left: ${p => p.left}%;
+    z-index: 25;
+`
+
+const MainTitle = styled.div`
+    position: absolute;
+    color: #87C846;
+    font-size: 8rem;
+    text-align: center;
+    z-index: 1;
+    transform: translateY(100%);
+    opacity: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+        width: 100%;
+    }
+    
 `
 
 const StaticText = styled.div`
       color: #87C846;
       line-height: 1.3;
-      padding-left: 4rem;
-      padding-top: 4rem;
+      opacity: 0;
+      position: absolute;
+      top :10%;
+      left: 3%;
 `
 
 const Title = styled.div`
@@ -72,6 +106,9 @@ const PointContainer = styled.div`
       overflow: hidden;
       height: 50%;
       margin-left: 10%;
+      position: absolute;
+      top:0;
+      right: 8%;
 `
 
 const PointGroupContainer = styled.div`
@@ -98,36 +135,165 @@ const Description = styled.div`
       color: #999999;
 `
 
+const SceneContainer = styled.div`
+      position: absolute;
+      top: 0;
+      left:0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      z-index: 3;
 
+      ${p => p.css}
+`
 
-const duration = 1 / 4
-const offset = 0.2
+const sceneThirdCss = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+`
 
-const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef }) => {
+const CentralEarthOuter = styled.div`
+    transform: scale(0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const CentralEarth = styled.img`
+    width: 80%;
+    -webkit-animation: aniSix-x 10s linear infinite 0.5s;
+    animation: aniSix-x 10s linear infinite 0.5s;
+    
+
+    @keyframes aniSix-x {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        25% {
+            -webkit-transform: rotate(90deg);
+        }
+        50% {
+            -webkit-transform: rotate(180deg);
+        }
+        75% {
+            -webkit-transform: rotate(270deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+`
+
+const BaseCard = styled.div`
+    position: absolute;
+    top: ${p => p.top}%;
+    left: ${p => p.left}%;
+    background-color: #FFF;
+    text-align: center;
+    box-shadow: 6px 6px 13px #C8C8C8;
+
+    img {
+        max-width: 350px;
+        min-width: 300px;
+        padding: 1.5rem 1.5rem 1rem;
+    }
+    div {
+        font-size: 1.5rem;
+        padding-bottom: 2rem;
+    }
+`
+
+const TextCard = styled.div`
+    position: absolute;
+    top: ${p => p.top}%;
+    left: ${p => p.left}%;
+    background-color: #FFF;
+    box-shadow: 6px 6px 13px #C8C8C8;
+    width: 40%;
+    border-radius: 25px;
+    padding: 2rem;
+    line-height: 1.5;
+
+    font-size: 14px;
+    * + * {
+        margin-top: 1rem;
+    }
+
+`
+
+const Slide = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+`
+
+const duration = 1 / 13
+const offset = 0.02
+const titleDuration = 0.05
+const baseOffset = offset + titleDuration
+
+const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef, mainTitleRef, sceneSecondRef, centralEarthRef, titleRef, bgRef }) => {
     useEffect(() => {
-        if (progress < offset) {
+        if (progress > offset && progress < titleDuration) {
+            console.log('123')
+            gsap.to(mainTitleRef.current, { opacity: 1, transform: 'translateY(10%)', duration: 1, onComplete: () => gsap.to(mainTitleRef.current, { opacity: 0 }) })
+            gsap.to(sceneSecondRef.current, { opacity: 0 })
+            gsap.to(titleRef.current, { opacity: 0 })
+            gsap.to(bgRef.current, { transform: 'scale(1)' })
+            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
+        } else if (progress > baseOffset && progress < duration + baseOffset) {
+            gsap.to(mainTitleRef.current, { opacity: 0 })
+            gsap.to(sceneSecondRef.current, { opacity: 1 })
+            gsap.to(titleRef.current, { opacity: 1 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 300%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 300%)' })
             gsap.to(thirdPointsRef.current, { opacity: 1, transform: 'translate(0px, 300%)' })
+            gsap.to(bgRef.current, { transform: 'scale(1)' })
+            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
         }
-        else if (progress > offset && progress < duration * 2) {
+        else if (progress > duration + baseOffset && progress < duration * 2 + baseOffset) {
             console.log('1')
+            gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 200%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 250%)' })
             gsap.to(thirdPointsRef.current, { opacity: 1, transform: 'translate(0px, 300%)' })
-        } else if (progress > duration + offset && progress < duration * 3) {
+            gsap.to(bgRef.current, { transform: 'scale(1)' })
+            gsap.to(sceneSecondRef.current, { opacity: 1 })
+            gsap.to(titleRef.current, { opacity: 1 })
+            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
+        } else if (progress > duration * 2 + baseOffset && progress < duration * 3 + baseOffset) {
             console.log('2')
+            gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 100%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 100%)' })
             gsap.to(thirdPointsRef.current, { opacity: 1, transform: 'translate(0px, 200%)' })
-        } else if (progress > duration * 2 && progress < duration * 4) {
+            gsap.to(bgRef.current, { transform: 'scale(1)' })
+            gsap.to(sceneSecondRef.current, { opacity: 1 })
+            gsap.to(titleRef.current, { opacity: 1 })
+            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
+        } else if (progress > duration * 5 + baseOffset && progress < duration * 6 + baseOffset) {
             console.log('3')
+            gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 0%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 0%)' })
             gsap.to(thirdPointsRef.current, { opacity: 1, transform: 'translate(0px, 0%)' })
+            gsap.to(bgRef.current, { transform: 'scale(1)' })
+            gsap.to(sceneSecondRef.current, { opacity: 1 })
+            gsap.to(titleRef.current, { opacity: 1 })
+            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
+        } else if (progress > duration * 6 + baseOffset) {
+            console.log('6')
+            gsap.to(mainTitleRef.current, { opacity: 0 })
+            gsap.to(sceneSecondRef.current, { opacity: 0 })
+            gsap.to(bgRef.current, { transform: 'scale(0)' })
+            gsap.to(titleRef.current, { opacity: 1 })
+            // gsap.to(centralEarthRef.current, { transform: 'scale(1)' })
         }
 
-        console.log(progress)
     }, [progress])
     return <div />
 })
@@ -136,6 +302,14 @@ const Esg = () => {
     const firstPointRef = useRef()
     const secondPointsRef = useRef()
     const thirdPointsRef = useRef()
+    const titleRef = useRef()
+    const mainTitleRef = useRef()
+    const sceneSecondRef = useRef()
+    const bgRef = useRef()
+    const centralEarthRef = useRef()
+    const recyclingRef = useRef()
+    const parkingRef = useRef()
+    const roomRef = useRef()
 
     return (
         <Container>
@@ -144,50 +318,104 @@ const Esg = () => {
                 <div>
                     <Scene
                         triggerHook="onLeave"
-                        duration={3000}
+                        duration={6000}
                         pin>
                         {(progress) => (
                             <div className="contentsContainer">
                                 <Timeline totalProgress={progress} paused>
                                     <div className="contents">
                                         <EarthContainer>
-                                            <StaticText>
+                                            <Background ref={bgRef} />
+                                            <MainTitle ref={mainTitleRef}>
+                                                <div>Environmental,</div>
+                                                <div>Social,</div>
+                                                <div>Governance</div>
+                                            </MainTitle>
+                                            <StaticText ref={titleRef}>
                                                 <Title>Environmental, Social and Governance</Title>
                                                 <SubTitle>Energy Saving in 2020/21</SubTitle>
                                             </StaticText>
-                                            <Trigger progress={progress} firstPointRef={firstPointRef} secondPointsRef={secondPointsRef} thirdPointsRef={thirdPointsRef} />
-                                            <PointContainer>
-                                                <PointGroup ref={firstPointRef} mainContent="Electricity saving 635,585 kWh" src={point_1} description="which equals to" />
-                                                <PointGroup ref={secondPointsRef} mainContent="CO2 emission reduction 451,265 kg" src={point_2} description="which equals to" />
-                                                <PointGroup ref={thirdPointsRef} mainContent="Planting 19,620 trees" src={point_3} />
-                                            </PointContainer>
                                             <Tween>
-                                                <Timeline target={<Widget src={widget_1} bottom={10} width={20} height={20} />}>
-                                                    <Tween to={{ opacity: 1 }} from={{ opacity: 0 }} />
-                                                </Timeline>
-                                                <Timeline target={<Widget src={widget_2} bottom={17} left={18} width={25} height={25} />}>
-                                                    <Tween to={{ opacity: 1 }} from={{ opacity: 0 }} />
-                                                </Timeline>
-                                                <Timeline target={<Widget src={widget_3} bottom={4} left={30} width={12} height={12} />}>
-                                                    <Tween to={{ opacity: 1 }} from={{ opacity: 0 }} />
-                                                </Timeline>
-                                                <Timeline target={<Widget src={widget_3} bottom={25} left={59} width={12} height={12} />}>
-                                                    <Tween to={{ opacity: 1 }} from={{ opacity: 0 }} />
-                                                </Timeline>
-                                                <Timeline target={<Widget src={widget_4} bottom={2} left={57} width={18} height={18} />}>
-                                                    <Tween to={{ opacity: 1 }} from={{ opacity: 0 }} />
-                                                </Timeline>
-                                                <Timeline target={<Widget src={widget_5} bottom={0} left={78} width={18} height={18} />}>
-                                                    <Tween to={{ opacity: 1 }} from={{ opacity: 0 }} />
-                                                </Timeline>
+                                                <SceneContainer ref={sceneSecondRef}>
+                                                    <Trigger progress={progress}
+                                                        firstPointRef={firstPointRef}
+                                                        secondPointsRef={secondPointsRef}
+                                                        thirdPointsRef={thirdPointsRef}
+                                                        mainTitleRef={mainTitleRef}
+                                                        sceneSecondRef={sceneSecondRef}
+                                                        centralEarthRef={centralEarthRef}
+                                                        titleRef={titleRef}
+                                                        bgRef={bgRef} />
+                                                    <PointContainer>
+                                                        <PointGroup ref={firstPointRef} mainContent="Electricity saving 635,585 kWh" src={point_1} description="which equals to" />
+                                                        <PointGroup ref={secondPointsRef} mainContent="CO2 emission reduction 451,265 kg" src={point_2} description="which equals to" />
+                                                        <PointGroup ref={thirdPointsRef} mainContent="Planting 19,620 trees" src={point_3} />
+                                                    </PointContainer>
+                                                    <Timeline target={<Widget src={widget_1} bottom={10} width={20} height={20} />} >
+                                                        <Tween to={{ opacity: 0 }} from={{ opacity: 1 }} />
+                                                    </Timeline>
+                                                    <Timeline target={<Widget src={widget_2} bottom={17} left={18} width={25} height={25} />}>
+                                                        <Tween to={{ opacity: 0 }} from={{ opacity: 1 }} />
+                                                    </Timeline>
+                                                    <Timeline target={<Widget src={widget_3} bottom={4} left={30} width={12} height={12} />}>
+                                                        <Tween to={{ opacity: 0 }} from={{ opacity: 1 }} />
+                                                    </Timeline>
+                                                    <Timeline target={<Widget src={widget_3} bottom={25} left={59} width={12} height={12} />}>
+                                                        <Tween to={{ opacity: 0 }} from={{ opacity: 1 }} />
+                                                    </Timeline>
+                                                    <Timeline target={<Widget src={widget_4} bottom={2} left={57} width={18} height={18} />}>
+                                                        <Tween to={{ opacity: 0 }} from={{ opacity: 1 }} />
+                                                    </Timeline>
+                                                    <Timeline target={<Widget src={widget_5} bottom={0} left={78} width={18} height={18} />}>
+                                                        <Tween to={{ opacity: 0 }} from={{ opacity: 1 }} />
+                                                    </Timeline>
+                                                </SceneContainer>
                                             </Tween>
+                                            <SceneContainer css={sceneThirdCss}>
+                                                <Timeline target={<CentralEarthOuter ref={centralEarthRef}><CentralEarth src={earthImg} /></CentralEarthOuter>}>
+                                                    <Tween to={{ scale: 1 }} from={{ scale: 0 }} />
+                                                </Timeline>
+                                                <Timeline>
+                                                    <Tween to={{ opacity: 1 }}>
+                                                        <Slide ref={recyclingRef}>
+                                                            <Card src={recyclingImg} text="Recycling" top={40} left={10} />
+                                                            <RecyclingText top={50} left={50} />
+                                                        </Slide>
+                                                    </Tween>
+                                                </Timeline>
+                                                <Timeline>
+                                                    <Tween to={{ opacity: 1 }} onStart={() => gsap.to(recyclingRef.current, ({ opacity: 0 }))}>
+                                                        <Slide ref={parkingRef}>
+                                                            <Card src={parkingImg} text="EVs and Smart Parking System" top={30} left={60} />
+                                                            <ParkingText top={40} left={10} />
+                                                        </Slide>
+                                                    </Tween>
+                                                </Timeline>
+                                                <Timeline>
+                                                    <Tween to={{ opacity: 1 }} onStart={() => gsap.to(parkingRef.current, ({ opacity: 0 }))}>
+                                                        <Slide ref={roomRef}>
+                                                            <Card src={sustainableImg} text="Sustainable Food Sourcing" top={40} left={10} />
+                                                            <Card src={roomImg} text="Smart Room Control Technology" top={10} left={60} />
+                                                        </Slide>
+                                                    </Tween>
+                                                </Timeline>
+                                                <Timeline>
+                                                    <Tween to={{ opacity: 1 }} onStart={() => gsap.to(roomRef.current, ({ opacity: 0 }))}>
+                                                        <Slide>
+                                                            <Card src={sustainableImg} text="Cyberport 5 Expansion" top={30} left={60} />
+                                                            <CyberportText top={40} left={5} />
+                                                        </Slide>
+                                                    </Tween>
+                                                </Timeline>
+                                            </SceneContainer>
                                         </EarthContainer>
                                     </div>
                                 </Timeline>
                             </div>
-                        )}
-                    </Scene>
-                </div>
+                        )
+                        }
+                    </Scene >
+                </div >
             </Controller >
         </Container >
     )
@@ -204,5 +432,51 @@ const PointGroup = forwardRef(({ mainContent, src, description }, ref) => {
         </PointGroupContainer>
     )
 })
+
+const Card = forwardRef(({ src, text, top, left }, ref) => {
+    return (
+        <BaseCard ref={ref} top={top} left={left}>
+            <img src={src} />
+            <div>{text}</div>
+        </BaseCard>
+    )
+})
+
+
+const RecyclingText = ({ top, left }) => (
+    <TextCard top={top} left={left}>
+        On our campus, the 'Big Belly' recycling bins are solar powered, installed with an intelligent sensor and compressor compacting recycled content when they are full and sends notifications to cleaning staff for collection.
+    </TextCard>
+)
+
+const ParkingText = ({ top, left }) => (
+    <TextCard top={top} left={left}>
+        <div>Cyberport incubatees, oneCHARGE Solutions and LHC New Energy Company, applied an EV charger system at carpark areas to boost convenience for EV owners and encourage a cleaner alternative method to travel.</div>
+        <div>The Smart Car Parking System improvement project boosted efficiency by allowing contactless free parking redemption, feasibilities of e-payment and providing availability of parking spaces via an application.</div>
+    </TextCard>
+)
+
+
+const CyberportText = ({ top, left }) => (
+    <TextCard top={top} left={left}>
+        <div>Sustainable features in our expansion efforts include:</div>
+        <ul>
+            <li>Designated part of the low zone floor spaces as greenery open
+                spaces, sunset observation decks and naturally ventilated wind
+                orridors
+            </li>
+
+            <li>Revitalisation of the existing waterfront park landscaping features and smart facilities</li>
+
+            <li>Modular Integrated Construction (MiC) Technology implemented</li>
+            <li>Observes BEAM plus certification criteria and aims for at least
+                30% of construction waste is recycled during the construction
+                processes
+            </li>
+        </ul>
+    </TextCard>
+)
+
+
 
 export default Esg
