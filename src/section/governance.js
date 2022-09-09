@@ -14,7 +14,7 @@ const AnimationContainer = styled.div`
       }
 
     .contentsContainer {
-        height: 100vh;
+        height: 2000px;
         width: 100%;
       }
 
@@ -24,22 +24,24 @@ const AnimationContainer = styled.div`
       }
 `
 
-const GovernanceGird = styled.div`
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-
-    > * + * {
-        border-left: 1px solid #999999;
-    }
-`
 
 const Column = styled.div`
     height: 100%;
     width: calc(100% / 4);
     z-index: ${p => p.zIndex};
     overflow: hidden;
-    text-align: ${p => p.textAlign}
+    text-align: ${p => p.textAlign};
+    position: sticky;
+`
+
+const GovernanceGird = styled.div`
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+
+    > * + ${Column} {
+        border-left: 1px solid #999999;
+    }
 `
 
 const Content = styled.div`
@@ -53,16 +55,28 @@ const Content = styled.div`
 
 `
 
-
 const StaticContents = styled.div`
     position: absolute;
-    height: 30rem;
-    top: 50%;
+    top: 25%;
+    z-index: 20;
+    width: calc(100% / 4 - 20%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
 `
 
-const Group = styled.div`
+const Box = styled.div`
+    width: ${p => p.width ?? 40}%;
+    text-align: center;
+    margin: ${p => p.margin};
+    color: #0056AE;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
     img {
-        width: 10rem;
+        width: 7rem;
         margin-bottom: 1rem;
     }
 `
@@ -70,7 +84,6 @@ const Group = styled.div`
 const Animation = () => {
     return (
         <AnimationContainer>
-            <div className="section" />
             <Controller>
                 <div>
                     <Scene
@@ -116,6 +129,25 @@ const Animation = () => {
                                                     </Timeline>
                                                 </Column>
                                             </Tween>
+                                            <StaticContents>
+                                                <Box>Cyberport believes</Box>
+                                                <Box width="25" margin="5rem">that good corporate governance is essential to</Box>
+                                                <Box margin="2.5rem 0">
+                                                    <img src={MissionSvg} />
+                                                    <div>accomplishing our public missions,</div>
+                                                </Box>
+                                                <Box margin="2.5rem 0">
+                                                    <img src={ExpectationSvg} />
+                                                    <div>meeting stakeholders' expectations,</div>
+                                                </Box>
+                                                <Box margin="2.5rem 0">
+                                                    <img src={ExpectationSvg} />
+                                                    <div>and attaining sustainable growth.</div>
+                                                </Box>
+                                                <Box margin="5rem 0">
+                                                    We are committed to upholding high standards of corporate governance and have adopted accountability, transparency, fairness, ethics and integrity as the cornerstones of our framework.
+                                                </Box>
+                                            </StaticContents>
                                         </GovernanceGird>
                                     </div>
                                 </Timeline>
