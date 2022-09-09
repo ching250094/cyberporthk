@@ -22,7 +22,7 @@ const Container = styled.div`
     position :relative;
 
     .section {
-        height: 20vh;
+        height: 30vh;
       }
 
     .contentsContainer {
@@ -236,15 +236,13 @@ const offset = 0.02
 const titleDuration = 0.05
 const baseOffset = offset + titleDuration
 
-const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef, mainTitleRef, sceneSecondRef, centralEarthRef, titleRef, bgRef }) => {
+const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef, mainTitleRef, sceneSecondRef, titleRef, bgRef }) => {
     useEffect(() => {
         if (progress > offset && progress < titleDuration) {
-            console.log('123')
             gsap.to(mainTitleRef.current, { opacity: 1, transform: 'translateY(10%)', duration: 1, onComplete: () => gsap.to(mainTitleRef.current, { opacity: 0 }) })
             gsap.to(sceneSecondRef.current, { opacity: 0 })
             gsap.to(titleRef.current, { opacity: 0 })
             gsap.to(bgRef.current, { transform: 'scale(1)' })
-            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
         } else if (progress > baseOffset && progress < duration + baseOffset) {
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(sceneSecondRef.current, { opacity: 1 })
@@ -253,10 +251,8 @@ const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 300%)' })
             gsap.to(thirdPointsRef.current, { opacity: 1, transform: 'translate(0px, 300%)' })
             gsap.to(bgRef.current, { transform: 'scale(1)' })
-            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
         }
         else if (progress > duration + baseOffset && progress < duration * 2 + baseOffset) {
-            console.log('1')
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 200%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 250%)' })
@@ -264,9 +260,7 @@ const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef
             gsap.to(bgRef.current, { transform: 'scale(1)' })
             gsap.to(sceneSecondRef.current, { opacity: 1 })
             gsap.to(titleRef.current, { opacity: 1 })
-            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
         } else if (progress > duration * 2 + baseOffset && progress < duration * 3 + baseOffset) {
-            console.log('2')
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 100%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 100%)' })
@@ -274,9 +268,7 @@ const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef
             gsap.to(bgRef.current, { transform: 'scale(1)' })
             gsap.to(sceneSecondRef.current, { opacity: 1 })
             gsap.to(titleRef.current, { opacity: 1 })
-            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
         } else if (progress > duration * 5 + baseOffset && progress < duration * 6 + baseOffset) {
-            console.log('3')
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 0%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 0%)' })
@@ -284,14 +276,11 @@ const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef
             gsap.to(bgRef.current, { transform: 'scale(1)' })
             gsap.to(sceneSecondRef.current, { opacity: 1 })
             gsap.to(titleRef.current, { opacity: 1 })
-            // gsap.to(centralEarthRef.current, { transform: 'scale(0)' })
         } else if (progress > duration * 6 + baseOffset) {
-            console.log('6')
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(sceneSecondRef.current, { opacity: 0 })
             gsap.to(bgRef.current, { transform: 'scale(0)' })
             gsap.to(titleRef.current, { opacity: 1 })
-            // gsap.to(centralEarthRef.current, { transform: 'scale(1)' })
         }
 
     }, [progress])
@@ -306,7 +295,6 @@ const Esg = () => {
     const mainTitleRef = useRef()
     const sceneSecondRef = useRef()
     const bgRef = useRef()
-    const centralEarthRef = useRef()
     const recyclingRef = useRef()
     const parkingRef = useRef()
     const roomRef = useRef()
@@ -343,7 +331,6 @@ const Esg = () => {
                                                         thirdPointsRef={thirdPointsRef}
                                                         mainTitleRef={mainTitleRef}
                                                         sceneSecondRef={sceneSecondRef}
-                                                        centralEarthRef={centralEarthRef}
                                                         titleRef={titleRef}
                                                         bgRef={bgRef} />
                                                     <PointContainer>
@@ -372,7 +359,7 @@ const Esg = () => {
                                                 </SceneContainer>
                                             </Tween>
                                             <SceneContainer css={sceneThirdCss}>
-                                                <Timeline target={<CentralEarthOuter ref={centralEarthRef}><CentralEarth src={earthImg} /></CentralEarthOuter>}>
+                                                <Timeline target={<CentralEarthOuter><CentralEarth src={earthImg} /></CentralEarthOuter>}>
                                                     <Tween to={{ scale: 1 }} from={{ scale: 0 }} />
                                                 </Timeline>
                                                 <Timeline>
@@ -414,9 +401,10 @@ const Esg = () => {
                             </div>
                         )
                         }
-                    </Scene >
+                    </Scene>
                 </div >
             </Controller >
+            <div className="section" />
         </Container >
     )
 }
