@@ -100,37 +100,48 @@ const Background = styled.div`
   background-size: cover;
   z-index: 1;
 `
-const duration = 1 / 5
 
-function Trigger({ progress, talentsRef, industryRef, economiesRef, marketingRef, bgRef }) {
+function reset(ref, transform = 'translate(0)') {
+    return () => gsap.to(ref.current, { transform, duration: 1.5 })
+}
+
+const duration = 1 / 6
+
+function Trigger({ progress, talentsRef, industryRef, economiesRef, marketingRef, bgRef, talentCircleRef,
+    industryCircleRef, economiesCircleRef, marketingCircleRef }) {
     useEffect(() => {
         if (progress < duration && progress < duration * 2) {
-            gsap.to(talentsRef.current, { background: bg.talents })
-            gsap.to(industryRef.current, { background: '#999999' })
-            gsap.to(economiesRef.current, { background: '#999999' })
-            gsap.to(marketingRef.current, { background: '#999999' })
+            gsap.to(talentCircleRef.current, { background: bg.talents, onComplete: reset(talentsRef, 'translate(0, -10%)') })
+            gsap.to(industryCircleRef.current, { background: '#999999', onComplete: reset(industryRef) })
+            gsap.to(economiesCircleRef.current, { background: '#999999', onComplete: reset(economiesRef) })
+            gsap.to(marketingCircleRef.current, { background: '#999999', onComplete: reset(marketingRef) })
             gsap.to(bgRef.current, { background: `url(${BgTalents})` })
         }
         else if (progress > duration * 2 && progress < duration * 3) {
-            gsap.to(industryRef.current, { background: bg.industry })
-            gsap.to(talentsRef.current, { background: '#999999' })
-            gsap.to(economiesRef.current, { background: '#999999' })
-            gsap.to(marketingRef.current, { background: '#999999' })
+            gsap.to(industryCircleRef.current, { background: bg.industry, onComplete: reset(industryRef) })
+            gsap.to(talentCircleRef.current, { background: '#999999', onComplete: reset(talentsRef, 'translate(0, -10%)') })
+            gsap.to(economiesCircleRef.current, { background: '#999999', onComplete: reset(economiesRef) })
+            gsap.to(marketingCircleRef.current, { background: '#999999', onComplete: reset(marketingRef) })
             gsap.to(bgRef.current, { background: `url(${BgIndustry})` })
         }
         else if (progress > duration * 3 && progress < duration * 4) {
-            gsap.to(economiesRef.current, { background: bg.economies })
-            gsap.to(talentsRef.current, { background: '#999999' })
-            gsap.to(industryRef.current, { background: '#999999' })
-            gsap.to(marketingRef.current, { background: '#999999' })
+            gsap.to(economiesCircleRef.current, { background: bg.economies, onComplete: reset(economiesRef) })
+            gsap.to(talentCircleRef.current, { background: '#999999', onComplete: reset(talentsRef, 'translate(0, -10%)') })
+            gsap.to(industryCircleRef.current, { background: '#999999', onComplete: reset(industryRef) })
+            gsap.to(marketingCircleRef.current, { background: '#999999', onComplete: reset(marketingRef) })
             gsap.to(bgRef.current, { background: `url(${BgEconomies})` })
         }
-        else if (progress > duration * 3) {
-            gsap.to(marketingRef.current, { background: bg.marketing })
-            gsap.to(talentsRef.current, { background: '#999999' })
-            gsap.to(industryRef.current, { background: '#999999' })
-            gsap.to(economiesRef.current, { background: '#999999' })
+        else if (progress > duration * 4 && progress < duration * 5) {
+            gsap.to(marketingCircleRef.current, { background: bg.marketing, onComplete: reset(marketingRef) })
+            gsap.to(talentCircleRef.current, { background: '#999999', onComplete: reset(talentsRef, 'translate(0, -10%)') })
+            gsap.to(industryCircleRef.current, { background: '#999999', onComplete: reset(industryRef) })
+            gsap.to(economiesCircleRef.current, { background: '#999999', onComplete: reset(economiesRef) })
             gsap.to(bgRef.current, { background: `url(${BgMarketing})` })
+        } else if (progress > duration * 5) {
+            gsap.to(talentCircleRef.current, { background: bg.talents, onComplete: () => gsap.to(talentsRef.current, { transform: 'translate(320%, 55%)', duration: 1.5 }) })
+            gsap.to(industryCircleRef.current, { background: bg.industry, onComplete: () => gsap.to(industryRef.current, { transform: 'translate(130%, 0)', duration: 1.5 }) })
+            gsap.to(economiesCircleRef.current, { background: bg.economies, onComplete: () => gsap.to(economiesRef.current, { transform: 'translate(-50%, 0)', duration: 1.5 }) })
+            gsap.to(marketingCircleRef.current, { background: bg.marketing, onComplete: () => gsap.to(marketingRef.current, { transform: 'translate(-230%,53%)', duration: 1.5 }) })
         }
 
     }, [progress])
@@ -143,6 +154,10 @@ const Circles = () => {
     const industryRef = useRef()
     const economiesRef = useRef()
     const marketingRef = useRef()
+    const talentCircleRef = useRef()
+    const industryCircleRef = useRef()
+    const economiesCircleRef = useRef()
+    const marketingCircleRef = useRef()
     const bgRef = useRef()
 
     return (
@@ -151,7 +166,7 @@ const Circles = () => {
                 <div>
                     <Scene
                         triggerHook="onLeave"
-                        duration={4000}
+                        duration={5000}
                         pin
                     >
                         {(progress) => (
@@ -159,27 +174,38 @@ const Circles = () => {
                                 <Timeline totalProgress={progress} paused>
                                     <div className="contents">
                                         <Heading>
-                                            <Trigger progress={progress} bgRef={bgRef} talentsRef={talentsRef} industryRef={industryRef} marketingRef={marketingRef} economiesRef={economiesRef} />
+                                            <Trigger
+                                                progress={progress}
+                                                bgRef={bgRef}
+                                                talentsRef={talentsRef}
+                                                industryRef={industryRef}
+                                                marketingRef={marketingRef}
+                                                economiesRef={economiesRef}
+                                                talentCircleRef={talentCircleRef}
+                                                industryCircleRef={industryCircleRef}
+                                                economiesCircleRef={economiesCircleRef}
+                                                marketingCircleRef={marketingCircleRef}
+                                            />
                                             <Path />
                                             <Background ref={bgRef} />
 
-                                            <ItemContainer top={5} left={12} background={BgTalents}>
-                                                <Circle ref={talentsRef} />
+                                            <ItemContainer top={5} left={12} background={BgTalents} ref={talentsRef}>
+                                                <Circle ref={talentCircleRef} />
                                                 <Text>Talents</Text>
                                             </ItemContainer>
 
-                                            <ItemContainer top={14} left={32}>
-                                                <Circle ref={industryRef} />
+                                            <ItemContainer top={14} left={32} ref={industryRef}>
+                                                <Circle ref={industryCircleRef} />
                                                 <Text>Industry</Text>
                                             </ItemContainer>
 
-                                            <ItemContainer top={14} left={52}>
-                                                <Circle ref={economiesRef} />
+                                            <ItemContainer top={14} left={52} ref={economiesRef}>
+                                                <Circle ref={economiesCircleRef} />
                                                 <Text marginLeft={14}>Economies Integration</Text>
                                             </ItemContainer>
 
-                                            <ItemContainer top={6} left={72}>
-                                                <Circle ref={marketingRef} />
+                                            <ItemContainer top={6} left={72} ref={marketingRef}>
+                                                <Circle ref={marketingCircleRef} />
                                                 <Text marginLeft={14}>Marketing Integration</Text>
                                             </ItemContainer>
 
