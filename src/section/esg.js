@@ -17,6 +17,9 @@ import recyclingImg from '../assets/images/esg/recycling.png'
 import sustainableImg from '../assets/images/esg/sustainable.png'
 import roomImg from '../assets/images/esg/room.png'
 import parkingImg from '../assets/images/esg/parking.png'
+import cyberportImg from '../assets/images/esg/cyberport.png'
+import communityImg from '../assets/images/esg/community_1.png'
+import conferenceImg from '../assets/images/esg/community_2.png'
 
 const Container = styled.div`
     position :relative;
@@ -201,6 +204,8 @@ const BaseCard = styled.div`
     div {
         font-size: 1.5rem;
         padding-bottom: 2rem;
+        width: 80%;
+        margin: 0 auto;
     }
 `
 
@@ -298,6 +303,7 @@ const Esg = () => {
     const recyclingRef = useRef()
     const parkingRef = useRef()
     const roomRef = useRef()
+    const communityRef = useRef()
 
     return (
         <Container>
@@ -363,7 +369,15 @@ const Esg = () => {
                                                     <Tween to={{ scale: 1 }} from={{ scale: 0 }} />
                                                 </Timeline>
                                                 <Timeline>
-                                                    <Tween to={{ opacity: 1 }}>
+                                                    <Tween to={{ opacity: 1 }} >
+                                                        <Slide ref={communityRef}>
+                                                            <Card src={communityImg} text="Co-building for a Sustainable Community" top={40} left={10} />
+                                                            <Card src={conferenceImg} text="Cyberport FinTect for ESG Conference 2021" top={10} left={60} />
+                                                        </Slide>
+                                                    </Tween>
+                                                </Timeline>
+                                                <Timeline>
+                                                    <Tween to={{ opacity: 1 }} onStart={() => gsap.to(communityRef.current, ({ opacity: 0 }))}>
                                                         <Slide ref={recyclingRef}>
                                                             <Card src={recyclingImg} text="Recycling" top={40} left={10} />
                                                             <RecyclingText top={50} left={50} />
@@ -389,7 +403,7 @@ const Esg = () => {
                                                 <Timeline>
                                                     <Tween to={{ opacity: 1 }} onStart={() => gsap.to(roomRef.current, ({ opacity: 0 }))}>
                                                         <Slide>
-                                                            <Card src={sustainableImg} text="Cyberport 5 Expansion" top={30} left={60} />
+                                                            <Card src={cyberportImg} text="Cyberport 5 Expansion" top={30} left={60} />
                                                             <CyberportText top={40} left={5} />
                                                         </Slide>
                                                     </Tween>

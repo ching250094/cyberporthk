@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import HumanSvg from '../../assets/images/summary/startup_1.svg'
 import WindowSvg from '../../assets/images/summary/startup_2.svg'
-import MainContainer, { Heading } from './mainContainer'
+import MainContainer, { Heading, TitleTag } from './mainContainer'
 import { Container, Statistics, Data } from './shared'
 
 const ImageGroup = styled.div`
@@ -26,6 +26,9 @@ const WindowImage = styled.img.attrs({ src: WindowSvg })`
 const headingCss = css`
     ${Heading}{
         color: #00B8F1;
+    }
+    ${TitleTag}{
+        background-color: #0C77F7;
     }
 `
 
