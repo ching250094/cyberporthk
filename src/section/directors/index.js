@@ -1,11 +1,11 @@
 import Descriptions from './descriptions'
 import Board from './board'
 
-export default function DirectorSection() {
+export default function DirectorSection({ setModal }) {
     return (
         <>
             <Descriptions />
-            <Board />
+            <Board setModal={setModal} />
         </>
     )
 }

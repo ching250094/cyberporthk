@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import CultivationSvg from '../../assets/images/summary/cultivation.svg'
-import MainContainer, { Heading } from './mainContainer'
+import MainContainer, { Heading, TitleTag } from './mainContainer'
 import { Container, Statistics, Data } from './shared'
 
 const ImageGroup = styled.div`
@@ -13,6 +13,9 @@ const ImageGroup = styled.div`
 const headingCss = css`
     ${Heading}{
         color: #0055AD;
+    }
+    ${TitleTag} {
+        background-color: #0C77F7;
     }
 `
 

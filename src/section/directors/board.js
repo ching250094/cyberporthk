@@ -47,7 +47,7 @@ const TitleTag = styled.div`
     z-index: 10;
 `
 
-export default function DirectorBoard() {
+export default function DirectorBoard({ setModal }) {
     return (
         <Container>
             <TitleTag>Annual Summary</TitleTag>
@@ -74,7 +74,7 @@ export default function DirectorBoard() {
         return (photos, index) => (
             <BoardRow key={index}>
                 {photos.map((path, index) => (
-                    <div>
+                    <div onClick={() => setModal({ contents: 123 })}>
                         {index !== 1 ? (
                             <Transformer progress={progress}>
                                 <PhotoContainer>

@@ -13,9 +13,8 @@ const Container = styled.div`
     ${p => p.css}
 `
 
-const TitleTag = styled.div`
+export const TitleTag = styled.div`
     align-self: flex-end;
-    background-color: #0C77F7;
     color: #FFFFFF;
     font-size: 1.4em;
     padding: .5rem .8rem;

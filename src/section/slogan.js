@@ -25,19 +25,14 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
   }
+`
 
-  .text {
+const Text = styled.div`
     position: absolute;
     font-size: 3.5rem;
     color: #FFF;
-    opacity: 1;
-
-    &:last-child {
-        opacity: 0;
-      }
-  }
-
-`;
+    opacity: ${p => p.opacity};
+`
 
 const Mask = styled.div`
   width: 100%;
@@ -111,7 +106,7 @@ function Trigger({ firstScenesRef, secondScenesRef, maskRef, videoRef, playerRef
             gsap.to(firstScenesRef.current, { opacity: 1 })
             gsap.to(secondScenesRef.current, { opacity: 0 })
             gsap.to(maskRef.current, { opacity: 0 })
-        } else if (progress > offset && progress > duration + 0.1 && progress < duration * 3) {
+        } else if (progress > offset && progress > duration && progress < duration * 3) {
             gsap.to(firstScenesRef.current, { opacity: 0 })
             gsap.to(secondScenesRef.current, { opacity: 1 })
             gsap.to(maskRef.current, { opacity: 0 })
@@ -122,9 +117,8 @@ function Trigger({ firstScenesRef, secondScenesRef, maskRef, videoRef, playerRef
             gsap.to(maskRef.current, { opacity: 0 })
             gsap.to(videoRef.current, { opacity: 1 })
             playerRef.current.play()
-
-            return () => playerRef.current.pause()
         }
+        return () => playerRef.current.pause()
     }, [progress])
     return <div />
 }
@@ -152,10 +146,10 @@ export default function SloganSection() {
                                     <div className="contents">
                                         <Trigger progress={progress} firstScenesRef={firstScenesRef} secondScenesRef={secondScenesRef} maskRef={maskRef} videoRef={videoRef} playerRef={playerRef} />
                                         <Mask ref={maskRef} />
-                                        <div className="text" ref={firstScenesRef}>
+                                        <Text ref={firstScenesRef} opacity={1}>
                                             <div>UNLOCKING</div><div>OPPORTUNITIES</div>
-                                        </div>
-                                        <div className="text" ref={secondScenesRef}><div>BEYOND</div><div>BOUNDARIES</div></div>
+                                        </Text>
+                                        <Text ref={secondScenesRef} opacity={0}><div>BEYOND</div><div>BOUNDARIES</div></Text>
                                         <VideoContainer ref={videoRef}>
                                             <Video>
                                                 <video muted loop ref={playerRef}>

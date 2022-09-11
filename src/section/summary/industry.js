@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import LeftHumanSvg from '../../assets/images/summary/industry_1.svg'
 import RightHumanSvg from '../../assets/images/summary/industry_2.svg'
 import WindowsSvg from '../../assets/images/summary/industry_3.svg'
-import MainContainer, { Heading } from './mainContainer'
+import MainContainer, { Heading, TitleTag } from './mainContainer'
 import { Container, Statistics, Data } from './shared'
 
 const ImageGroup = styled.div`
@@ -33,6 +33,9 @@ const StatisticsContainer = styled(Statistics)`
 const headingCss = css`
     ${Heading}{
         color: #87C846;
+    }
+    ${TitleTag} {
+        background-color: #0C77F7;
     }
 `
 
