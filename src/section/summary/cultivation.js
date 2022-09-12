@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
-import CultivationSvg from '../../assets/images/summary/cultivation.svg'
+import CultivationPng from '../../assets/images/summary/cultivation.png'
+import CultivationBg from '../../assets/images/summary/cultivation_bg.png'
 import MainContainer, { Heading, TitleTag } from './mainContainer'
 import { Container, Statistics, Data } from './shared'
 
@@ -12,10 +13,10 @@ const ImageGroup = styled.div`
 
 const headingCss = css`
     ${Heading}{
-        color: #0055AD;
+        color: #5955A4;
     }
     ${TitleTag} {
-        background-color: #0C77F7;
+        background-color: #5955A4;
     }
 `
 
@@ -23,9 +24,9 @@ const headingCss = css`
 
 export default function CyberportCommunity() {
     return (
-        <MainContainer heading='TALENT CULTIVATION' renderImage={() => renderImage()} css={headingCss}>
+        <MainContainer background={CultivationBg} heading='TALENT CULTIVATION' renderImage={() => renderImage()} css={headingCss}>
             <Container>
-                <Statistics dataColor="#0055AD">
+                <Statistics dataColor="#5955A4">
                     <div>
                         <div>Digital technology interns during the year</div>
                         <Data>xxx</Data>
@@ -50,7 +51,7 @@ export default function CyberportCommunity() {
     function renderImage() {
         return (
             <ImageGroup>
-                <img src={CultivationSvg} />
+                <img src={CultivationPng} />
             </ImageGroup>
         )
     }

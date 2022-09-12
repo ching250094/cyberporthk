@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import styled, { css } from 'styled-components'
 import CoverSection from './section/cover'
 import SloganSection from './section/slogan'
 import AnnualSummary from './section/summary'
@@ -8,6 +9,7 @@ import Esg from './section/esg'
 import Governance from './section/governance'
 import LookingAhead from './section/ahead'
 import Modal from './Modal'
+
 
 function App() {
   const [modal, setModal] = useState({})
@@ -22,7 +24,7 @@ function App() {
       <Esg />
       <Governance />
       <LookingAhead />
-      {!!Object.keys(modal)?.length && <Modal contents={modal.contents} onClose={() => setModal({})} />}
+      <Modal contents={modal.contents} onClose={() => setModal({})} isOpen={!!Object.keys(modal)?.length} />
     </div >
   );
 }

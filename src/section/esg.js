@@ -372,7 +372,8 @@ const Esg = () => {
                                                     <Tween to={{ opacity: 1 }} >
                                                         <Slide ref={communityRef}>
                                                             <Card src={communityImg} text="Co-building for a Sustainable Community" top={40} left={10} />
-                                                            <Card src={conferenceImg} text="Cyberport FinTect for ESG Conference 2021" top={10} left={60} />
+                                                            <Card src={conferenceImg} text="Cyberport FinTect for ESG Conference 2021" top={10} left={55} />
+                                                            <CommunityText top={60} left={50} />
                                                         </Slide>
                                                     </Tween>
                                                 </Timeline>
@@ -387,8 +388,8 @@ const Esg = () => {
                                                 <Timeline>
                                                     <Tween to={{ opacity: 1 }} onStart={() => gsap.to(recyclingRef.current, ({ opacity: 0 }))}>
                                                         <Slide ref={parkingRef}>
-                                                            <Card src={parkingImg} text="EVs and Smart Parking System" top={30} left={60} />
-                                                            <ParkingText top={40} left={10} />
+                                                            <Card src={parkingImg} text="EVs and Smart Parking System" top={15} left={60} />
+                                                            <ParkingText top={45} left={8} />
                                                         </Slide>
                                                     </Tween>
                                                 </Timeline>
@@ -478,6 +479,25 @@ const CyberportText = ({ top, left }) => (
         </ul>
     </TextCard>
 )
+
+
+const CommunityText = ({ top, left }) => (
+    <TextCard top={top} left={left}>
+        <ul>
+            <li>
+                Joined the 4T Partnership established by the HKSAR Government to align targets and actions in achieving carbon neutrality by 2050
+            </li>
+
+            <li>
+                "Cyberport FinTech for ESG Conference 2021" allows businesses to explore how to enhance efficiency when implementing ESG measures
+            </li>
+
+            <li>"Shaping a Sustainable Financial Ecosystem: How to Integrate ESG Factors with FinTech" provides a platform for sharing how the industry is promoting global ESG and sustainable development</li>
+        </ul>
+    </TextCard>
+)
+
+
 
 
 
