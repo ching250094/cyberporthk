@@ -12,8 +12,8 @@ import Modal from './Modal'
 
 
 function App() {
-  const [modal, setModal] = useState({})
-  console.log(modal)
+  const [modal, setModal] = useState()
+
   return (
     <div className="app">
       <CoverSection />
@@ -24,7 +24,7 @@ function App() {
       <Esg />
       <Governance />
       <LookingAhead />
-      <Modal contents={modal.contents} onClose={() => setModal({})} isOpen={!!Object.keys(modal)?.length} />
+      <Modal contents={modal?.contents} onClose={() => setModal()} isOpen={modal} />
     </div >
   );
 }
