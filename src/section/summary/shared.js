@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Data = styled.div`
     color: #87C846;
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: 500;
 
     > div {
         font-size: 1.5rem;
@@ -26,7 +26,7 @@ export const Statistics = styled.div`
     width: 70%;
 
     > div {
-        width: 50%;
+        width: 40%;
         margin-bottom: 3rem;
 
         > * {

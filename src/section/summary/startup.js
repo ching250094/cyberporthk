@@ -1,44 +1,35 @@
 import styled, { css } from 'styled-components'
-import HumanSvg from '../../assets/images/summary/startup_1.svg'
-import WindowSvg from '../../assets/images/summary/startup_2.svg'
+import startupPng from '../../assets/images/summary/startup_1.png'
+import startupBg from '../../assets/images/summary/startup_bg.png'
 import MainContainer, { Heading, TitleTag } from './mainContainer'
 import { Container, Statistics, Data } from './shared'
 
 const ImageGroup = styled.div`
     display: flex;
-    position: relative;
+    img {
+        width: 25rem;
+        margin-right: 5rem;
+    }
 `
 
-const HumanImage = styled.img.attrs({ src: HumanSvg })`
-    position: relative;
-    right: 8rem;
-    width: 22rem;
-`
 
-const WindowImage = styled.img.attrs({ src: WindowSvg })`
-    position: absolute;
-    bottom: .5rem;
-    right: 0;
-    max-width: 750px;
-    min-width: 700px;
-`
 
 const headingCss = css`
     ${Heading}{
-        color: #00B8F1;
+        color: #C19A44;
     }
     ${TitleTag}{
-        background-color: #0C77F7;
+        background-color: #C19A44;
     }
 `
 
 export default function StartupAchievements() {
     return (
-        <MainContainer heading='START-UP ACHIEVEMENTS' renderImage={() => renderImage()} css={headingCss}>
+        <MainContainer background={startupBg} heading='START-UP ACHIEVEMENTS' renderImage={() => renderImage()} css={headingCss}>
             <Container>
-                <Statistics dataColor="#00B8F1">
+                <Statistics dataColor="#C19A44">
                     <div>
-                        <div>Accumulated funds raised</div>
+                        <div >Accumulated funds raised</div>
                         <Data>HK$ 33,908 m</Data>
                     </div>
                     <div>
@@ -61,8 +52,8 @@ export default function StartupAchievements() {
     function renderImage() {
         return (
             <ImageGroup>
-                <HumanImage />
-                <WindowImage />
+                <img src={startupPng} />
+               
             </ImageGroup>
         )
     }

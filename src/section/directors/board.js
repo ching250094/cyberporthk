@@ -26,6 +26,7 @@ const BoardRow = styled.div`
 
 const Photo = styled.img`   
     width: 20rem;
+    cursor: pointer;
 `
 
 const PhotoContainer = styled.div`
