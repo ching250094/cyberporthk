@@ -40,6 +40,7 @@ const closeStyle = css`
       }
 `
 
+
 const Mask = styled.div`
     position: fixed;
     top: 0;
@@ -51,7 +52,7 @@ const Mask = styled.div`
     opacity: 0;
     transform: scale(0);
 
-    ${p => p.isOpen ? openStyle : closeStyle}
+    ${p => p.isOpen === undefined ? null : p.isOpen ? openStyle : closeStyle};
 `
 
 const ModalWrapper = styled.div`
@@ -156,7 +157,6 @@ const Photo = styled.img`
 `
 
 export default function Modal({ contents, onClose, isOpen }) {
-
     return (
         <Mask isOpen={isOpen}>
             <Header>
