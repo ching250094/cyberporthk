@@ -1,8 +1,24 @@
 import styled, { css } from 'styled-components'
-import startupPng from '../../assets/images/summary/startup_1.png'
+import startupObjImg from '../../assets/images/summary/startup_2.png'
+import startupImg from '../../assets/images/summary/startup_1.png'
 import startupBg from '../../assets/images/summary/startup_bg.png'
 import MainContainer, { Heading, TitleTag } from './mainContainer'
-import { Container, Statistics, Data } from './shared'
+import { Data } from './shared'
+
+const Container = styled.div`
+    font-size: 1.2rem;
+    display: flex;
+
+    ${Data} {
+        color: #C19A44;
+        
+        > span {
+            font-size: 1.7rem;
+            padding-right: 12px;
+            vertical-align: middle;
+        }
+    }
+`
 
 const ImageGroup = styled.div`
     display: flex;
@@ -12,6 +28,37 @@ const ImageGroup = styled.div`
     }
 `
 
+const LeftSide = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const Item = styled.div`
+    margin: ${p => p.margin};
+`
+
+const RightStats = styled.div`
+    width: 50%;
+    height: 350px;
+    background: url(${startupObjImg});
+    position: absolute;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    top: 40%;
+`
+
+const TextContainer = styled.div`
+    position: absolute;
+    top: 40%;
+    left: 8%;
+    transform: translateY(-50%);
+    width: 30%;
+    line-height: 1.5;
+
+    * + * {
+        text-align: right;
+    }
+`
 
 
 const headingCss = css`
@@ -27,33 +74,36 @@ export default function StartupAchievements() {
     return (
         <MainContainer background={startupBg} heading='START-UP ACHIEVEMENTS' renderImage={() => renderImage()} css={headingCss}>
             <Container>
-                <Statistics dataColor="#C19A44">
-                    <div>
-                        <div >Accumulated funds raised</div>
-                        <Data>HK$ 33,908 m</Data>
-                    </div>
-                    <div>
+                <LeftSide>
+                    <Item margin="3rem 2rem 3rem 6rem">
+                        <div>Accumulated funds raised</div>
+                        <Data><span>HK$</span>33,903 m</Data>
+                    </Item>
+                    <Item margin="3rem 0 1rem">
                         <div>Accelerator programmes admitted</div>
                         <Data>219</Data>
-                    </div>
-                    <div>
-                        <div>Accumulated property rights</div>
-                        <Data>441</Data>
-                    </div>
-                    <div>
+                    </Item>
+                    <Item margin="5rem 2rem 3rem 6rem">
                         <div>Accumulated industry awards</div>
                         <Data>1,159</Data>
-                    </div>
-                </Statistics>
+                    </Item>
+                </LeftSide>
+                <div>
+                    <RightStats>
+                        <TextContainer>
+                            <div>Accumulated property rights attained</div>
+                            <Data>441</Data>
+                        </TextContainer>
+                    </RightStats>
+                </div>
             </Container>
-        </MainContainer>
+        </MainContainer >
     )
 
     function renderImage() {
         return (
             <ImageGroup>
-                <img src={startupPng} />
-               
+                <img src={startupImg} />
             </ImageGroup>
         )
     }
