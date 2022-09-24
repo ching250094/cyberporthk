@@ -3,7 +3,6 @@ import { Controller, Scene } from 'react-scrollmagic'
 import { Timeline } from 'react-gsap'
 import gsap from 'gsap'
 import { useRef, useEffect } from 'react'
-import video from '../assets/video.mp4'
 
 
 const Container = styled.div`
@@ -50,6 +49,7 @@ const VideoContainer = styled.div`
   opacity: 0;
   position: relative;
   height: 100vh;
+  width: 100vw;
   display: flex;
   overflow: hidden;
 `
@@ -60,6 +60,7 @@ const Video = styled.div`
   overflow: hidden;
   margin: 2rem;
   border-radius: 70px;
+  width: 100vw;
 
     &:after{
         position: absolute;
@@ -100,7 +101,7 @@ const VideoContents = styled.div`
 const offset = 0.005
 const duration = 1 / 5
 
-function Trigger({ firstScenesRef, secondScenesRef, maskRef, videoRef, playerRef, progress }) {
+function Trigger({ firstScenesRef, secondScenesRef, maskRef, videoRef, progress }) {
     useEffect(() => {
         if (progress > offset && progress < duration * 2) {
             gsap.to(firstScenesRef.current, { opacity: 1 })
@@ -116,9 +117,7 @@ function Trigger({ firstScenesRef, secondScenesRef, maskRef, videoRef, playerRef
         } else if (progress > duration * 4) {
             gsap.to(maskRef.current, { opacity: 0 })
             gsap.to(videoRef.current, { opacity: 1 })
-            playerRef.current.play()
         }
-        return () => playerRef.current.pause()
     }, [progress])
     return <div />
 }
@@ -128,7 +127,6 @@ export default function SloganSection() {
     const secondScenesRef = useRef()
     const maskRef = useRef()
     const videoRef = useRef()
-    const playerRef = useRef()
 
     return (
         <Container>
@@ -144,7 +142,7 @@ export default function SloganSection() {
                             <div className="contentsContainer">
                                 <Timeline totalProgress={progress} paused>
                                     <div className="contents">
-                                        <Trigger progress={progress} firstScenesRef={firstScenesRef} secondScenesRef={secondScenesRef} maskRef={maskRef} videoRef={videoRef} playerRef={playerRef} />
+                                        <Trigger progress={progress} firstScenesRef={firstScenesRef} secondScenesRef={secondScenesRef} maskRef={maskRef} videoRef={videoRef} />
                                         <Mask ref={maskRef} />
                                         <Text ref={firstScenesRef} opacity={1}>
                                             <div>UNLOCKING</div><div>OPPORTUNITIES</div>
@@ -152,9 +150,7 @@ export default function SloganSection() {
                                         <Text ref={secondScenesRef} opacity={0}><div>BEYOND</div><div>BOUNDARIES</div></Text>
                                         <VideoContainer ref={videoRef}>
                                             <Video>
-                                                <video muted loop ref={playerRef}>
-                                                    <source src={video} type="video/mp4" />
-                                                </video>
+                                                <iframe src="https://www.youtube.com/embed/jvsgUaUVk0c?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&autoplay=1&loop=1&playlist=jvsgUaUVk0c" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
                                             </Video>
                                             <VideoContents>
                                                 <div>Despite the global market sentiment gas been weak for the whole 2021</div>

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { Controller, Scene } from 'react-scrollmagic'
 import { Tween, Timeline } from 'react-gsap'
 import gsap from 'gsap'
-import { useRef, memo, useEffect, forwardRef } from 'react'
+import { useRef, memo, useEffect, forwardRef, useState } from 'react'
 import BackgroundSvg from '../assets/images/esg/background.png'
 import widget_1 from '../assets/images/esg/widget_1.svg'
 import widget_2 from '../assets/images/esg/widget_2.svg'
@@ -241,14 +241,30 @@ const offset = 0.02
 const titleDuration = 0.05
 const baseOffset = offset + titleDuration
 
-const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef, mainTitleRef, sceneSecondRef, titleRef, bgRef }) => {
+function useProgress(progress) {
+    const [slide, setSlide] = useState(0)
     useEffect(() => {
-        if (progress > offset && progress < titleDuration) {
+        if (progress > offset && progress < titleDuration) setSlide(1)
+        else if (progress > baseOffset && progress < duration + baseOffset) setSlide(2)
+        else if (progress > duration + baseOffset && progress < duration * 2 + baseOffset) setSlide(3)
+        else if (progress > duration * 2 + baseOffset && progress < duration * 3 + baseOffset) setSlide(4)
+        else if (progress > duration * 5 + baseOffset && progress < duration * 6 + baseOffset) setSlide(5)
+        else if (progress > duration * 6 + baseOffset) setSlide(6)
+    }, [progress])
+
+    return slide
+}
+
+const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef, mainTitleRef, sceneSecondRef, titleRef, bgRef }) => {
+    const slide = useProgress(progress)
+
+    useEffect(() => {
+        if (slide === 1) {
             gsap.to(mainTitleRef.current, { opacity: 1, transform: 'translateY(10%)', duration: 1, onComplete: () => gsap.to(mainTitleRef.current, { opacity: 0 }) })
             gsap.to(sceneSecondRef.current, { opacity: 0 })
             gsap.to(titleRef.current, { opacity: 0 })
             gsap.to(bgRef.current, { transform: 'scale(1)' })
-        } else if (progress > baseOffset && progress < duration + baseOffset) {
+        } else if (slide === 2) {
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(sceneSecondRef.current, { opacity: 1 })
             gsap.to(titleRef.current, { opacity: 1 })
@@ -257,7 +273,7 @@ const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef
             gsap.to(thirdPointsRef.current, { opacity: 1, transform: 'translate(0px, 300%)' })
             gsap.to(bgRef.current, { transform: 'scale(1)' })
         }
-        else if (progress > duration + baseOffset && progress < duration * 2 + baseOffset) {
+        else if (slide === 3) {
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 200%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 250%)' })
@@ -265,7 +281,7 @@ const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef
             gsap.to(bgRef.current, { transform: 'scale(1)' })
             gsap.to(sceneSecondRef.current, { opacity: 1 })
             gsap.to(titleRef.current, { opacity: 1 })
-        } else if (progress > duration * 2 + baseOffset && progress < duration * 3 + baseOffset) {
+        } else if (slide === 4) {
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 100%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 100%)' })
@@ -273,7 +289,7 @@ const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef
             gsap.to(bgRef.current, { transform: 'scale(1)' })
             gsap.to(sceneSecondRef.current, { opacity: 1 })
             gsap.to(titleRef.current, { opacity: 1 })
-        } else if (progress > duration * 5 + baseOffset && progress < duration * 6 + baseOffset) {
+        } else if (slide === 5) {
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(firstPointRef.current, { opacity: 1, transform: 'translate(0px, 0%)' })
             gsap.to(secondPointsRef.current, { opacity: 1, transform: 'translate(0px, 0%)' })
@@ -281,14 +297,13 @@ const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef
             gsap.to(bgRef.current, { transform: 'scale(1)' })
             gsap.to(sceneSecondRef.current, { opacity: 1 })
             gsap.to(titleRef.current, { opacity: 1 })
-        } else if (progress > duration * 6 + baseOffset) {
+        } else if (slide === 6) {
             gsap.to(mainTitleRef.current, { opacity: 0 })
             gsap.to(sceneSecondRef.current, { opacity: 0 })
             gsap.to(bgRef.current, { transform: 'scale(0)' })
             gsap.to(titleRef.current, { opacity: 1 })
         }
-
-    }, [progress])
+    }, [slide])
     return <div />
 })
 
