@@ -1,14 +1,19 @@
 import styled, { css } from 'styled-components'
 import industryPng from '../../assets/images/summary/industry_1.png'
 import industryBg from '../../assets/images/summary/industry_bg.png'
+import breakpoints from '../../style/breakpoints'
 import MainContainer, { Heading, TitleTag } from './mainContainer'
 import { Container, Statistics, Data } from './shared'
 
 const ImageGroup = styled.div`
     display: flex;
-
     img {
         width: 40rem;
+    }
+    @media only screen and ${breakpoints.mobile} {
+        img {
+            width: 24rem;
+        }
     }
 `
 

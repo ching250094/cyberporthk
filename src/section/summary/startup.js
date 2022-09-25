@@ -2,29 +2,21 @@ import styled, { css } from 'styled-components'
 import startupObjImg from '../../assets/images/summary/startup_2.png'
 import startupImg from '../../assets/images/summary/startup_1.png'
 import startupBg from '../../assets/images/summary/startup_bg.png'
+import breakpoints from '../../style/breakpoints'
 import MainContainer, { Heading, TitleTag } from './mainContainer'
 import { Data } from './shared'
-
-const Container = styled.div`
-    font-size: 1.2rem;
-    display: flex;
-
-    ${Data} {
-        color: #C19A44;
-        
-        > span {
-            font-size: 1.7rem;
-            padding-right: 12px;
-            vertical-align: middle;
-        }
-    }
-`
 
 const ImageGroup = styled.div`
     display: flex;
     img {
         width: 25rem;
         margin-right: 5rem;
+    }
+
+    @media only screen and ${breakpoints.mobile} {
+        img {
+            width: 20rem;
+        }
     }
 `
 
@@ -60,13 +52,54 @@ const TextContainer = styled.div`
     }
 `
 
-
 const headingCss = css`
     ${Heading}{
         color: #C19A44;
     }
     ${TitleTag}{
         background-color: #C19A44;
+    }
+`
+
+const Container = styled.div`
+    font-size: 1.2rem;
+    display: flex;
+
+    ${Data} {
+        color: #C19A44;
+        > span {
+            font-size: 1.7rem;
+            padding-right: 12px;
+            vertical-align: middle;
+        }
+    }
+
+    @media only screen and ${breakpoints.mobile} {
+        margin-top: 2rem;
+        flex-direction: column;
+
+        ${Item} {
+            margin: 0 0 2rem;
+        }
+
+        ${RightStats} {
+            background: none;
+            width: 100%;
+            position: relative;
+            height: auto;
+        }
+
+        ${TextContainer} {
+            position: relative;
+            width: 100%;
+            top: 0;
+            left: 0;
+            transform: none;
+
+            * + * {
+                text-align: left;
+            }
+        }
     }
 `
 

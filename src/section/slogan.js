@@ -150,7 +150,7 @@ export default function SloganSection() {
                                         <Text ref={secondScenesRef} opacity={0}><div>BEYOND</div><div>BOUNDARIES</div></Text>
                                         <VideoContainer ref={videoRef}>
                                             <Video>
-                                                <iframe src="https://www.youtube.com/embed/jvsgUaUVk0c?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&autoplay=1&loop=1&playlist=jvsgUaUVk0c" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+                                                <iframe src="https://www.youtube.com/embed/jvsgUaUVk0c?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&autoplay=1&loop=1&playlist=jvsgUaUVk0c" width="100%" height="100%" frameBorder="0" allow="accelerometer; autoplay; loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
                                             </Video>
                                             <VideoContents>
                                                 <div>Despite the global market sentiment gas been weak for the whole 2021</div>

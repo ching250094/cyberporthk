@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import CummunityPng from '../../assets/images/summary/community_1.png'
 import CummunityBg from '../../assets/images/summary/community_bg.png'
+import breakpoints from '../../style/breakpoints'
 import MainContainer, { Heading, TitleTag } from './mainContainer'
 import { Container, Statistics, Data } from './shared'
 
@@ -8,6 +9,11 @@ const ImageGroup = styled.div`
     display: flex;
     img {
         width: 40rem;
+    }
+    @media only screen and ${breakpoints.mobile} {
+        img {
+            width: 24rem;
+        }
     }
 `
 
@@ -59,12 +65,12 @@ export default function CyberportCommunity() {
     function renderImage() {
         return (
             <ImageGroup>
-                
+
                 <img src={CummunityPng} />
             </ImageGroup>
         )
     }
 
-    
+
 
 }

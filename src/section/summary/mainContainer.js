@@ -1,17 +1,6 @@
 import styled from 'styled-components'
+import breakpoints from '../../style/breakpoints'
 
-const Container = styled.div`
-    background: url(${p => p.background});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-
-    ${p => p.css}
-`
 
 export const TitleTag = styled.div`
     align-self: flex-end;
@@ -39,6 +28,36 @@ const ImageGroup = styled.div`
     right: 0;
     z-index: 1;
 `
+
+
+const Container = styled.div`
+    background: url(${p => p.background});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    ${p => p.css}
+
+     @media only screen and ${breakpoints.mobile} {
+        ${Heading} {
+            font-size: 1.7rem;
+        }
+
+        ${ContentContainer} {
+            margin-left: 3rem;
+            margin-right: 3rem;
+        }
+
+        ${ImageGroup}{
+            bottom: 15%;
+        }
+    }
+`
+
 
 export default function MainContainer({ background, children, renderImage, heading, css }) {
     return (
