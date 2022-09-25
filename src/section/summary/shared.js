@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import breakpoints from '../../style/breakpoints'
 
 export const Container = styled.div`
     font-size: 1.2rem;
@@ -36,5 +37,13 @@ export const Statistics = styled.div`
 
     ${Data} {
         color: ${p => p.dataColor};
+    }
+
+    @media only screen and ${breakpoints.mobile} {
+        width: 100%;
+
+        > div {
+            width: 50%;
+        }
     }
 `

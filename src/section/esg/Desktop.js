@@ -3,23 +3,24 @@ import { Controller, Scene } from 'react-scrollmagic'
 import { Tween, Timeline } from 'react-gsap'
 import gsap from 'gsap'
 import { useRef, memo, useEffect, forwardRef, useState } from 'react'
-import BackgroundSvg from '../assets/images/esg/background.png'
-import widget_1 from '../assets/images/esg/widget_1.svg'
-import widget_2 from '../assets/images/esg/widget_2.svg'
-import widget_3 from '../assets/images/esg/widget_3.svg'
-import widget_4 from '../assets/images/esg/widget_4.svg'
-import widget_5 from '../assets/images/esg/widget_5.svg'
-import point_1 from '../assets/images/esg/point_1.svg'
-import point_2 from '../assets/images/esg/point_2.svg'
-import point_3 from '../assets/images/esg/point_3.svg'
-import earthImg from '../assets/images/esg/earth_1.png'
-import recyclingImg from '../assets/images/esg/recycling.png'
-import sustainableImg from '../assets/images/esg/sustainable.png'
-import roomImg from '../assets/images/esg/room.png'
-import parkingImg from '../assets/images/esg/parking.png'
-import cyberportImg from '../assets/images/esg/cyberport.png'
-import communityImg from '../assets/images/esg/community_1.png'
-import conferenceImg from '../assets/images/esg/community_2.png'
+import BackgroundSvg from '../../assets/images/esg/background.png'
+import widget_1 from '../../assets/images/esg/widget_1.svg'
+import widget_2 from '../../assets/images/esg/widget_2.svg'
+import widget_3 from '../../assets/images/esg/widget_3.svg'
+import widget_4 from '../../assets/images/esg/widget_4.svg'
+import widget_5 from '../../assets/images/esg/widget_5.svg'
+import point_1 from '../../assets/images/esg/point_1.svg'
+import point_2 from '../../assets/images/esg/point_2.svg'
+import point_3 from '../../assets/images/esg/point_3.svg'
+import earthImg from '../../assets/images/esg/earth_1.png'
+import recyclingImg from '../../assets/images/esg/recycling.png'
+import sustainableImg from '../../assets/images/esg/sustainable.png'
+import roomImg from '../../assets/images/esg/room.png'
+import parkingImg from '../../assets/images/esg/parking.png'
+import cyberportImg from '../../assets/images/esg/cyberport.png'
+import communityImg from '../../assets/images/esg/community_1.png'
+import conferenceImg from '../../assets/images/esg/community_2.png'
+import Text from './constants'
 
 const Container = styled.div`
     position :relative;
@@ -57,7 +58,6 @@ const Background = styled.div`
     width: 100%;
     z-index: 2;
 `
-
 
 const Widget = styled.img`
     width: ${p => p.width}%;
@@ -201,6 +201,7 @@ const BaseCard = styled.div`
         min-width: 300px;
         padding: 1.5rem 1.5rem 1rem;
     }
+
     div {
         font-size: 1.5rem;
         padding-bottom: 2rem;
@@ -307,7 +308,7 @@ const Trigger = memo(({ progress, firstPointRef, secondPointsRef, thirdPointsRef
     return <div />
 })
 
-const Esg = () => {
+const Desktop = () => {
     const firstPointRef = useRef()
     const secondPointsRef = useRef()
     const thirdPointsRef = useRef()
@@ -341,8 +342,8 @@ const Esg = () => {
                                                 <div>Governance</div>
                                             </MainTitle>
                                             <StaticText ref={titleRef}>
-                                                <Title>Environmental, Social and Governance</Title>
-                                                <SubTitle>Energy Saving in 2020/21</SubTitle>
+                                                <Title>{Text.title}</Title>
+                                                <SubTitle>{Text.subTitle}</SubTitle>
                                             </StaticText>
                                             <Tween>
                                                 <SceneContainer ref={sceneSecondRef}>
@@ -355,9 +356,9 @@ const Esg = () => {
                                                         titleRef={titleRef}
                                                         bgRef={bgRef} />
                                                     <PointContainer>
-                                                        <PointGroup ref={firstPointRef} mainContent="Electricity saving 635,585 kWh" src={point_1} description="which equals to" />
-                                                        <PointGroup ref={secondPointsRef} mainContent="CO2 emission reduction 451,265 kg" src={point_2} description="which equals to" />
-                                                        <PointGroup ref={thirdPointsRef} mainContent="Planting 19,620 trees" src={point_3} />
+                                                        <PointGroup ref={firstPointRef} mainContent={Text.esgPoints.electricity} src={point_1} description={Text.esgPoints.description} />
+                                                        <PointGroup ref={secondPointsRef} mainContent={Text.esgPoints.co2} src={point_2} description={Text.esgPoints.description} />
+                                                        <PointGroup ref={thirdPointsRef} mainContent={Text.esgPoints.planting} src={point_3} />
                                                     </PointContainer>
                                                     <Timeline target={<Widget src={widget_1} bottom={10} width={20} height={20} />} >
                                                         <Tween to={{ opacity: 0 }} from={{ opacity: 1 }} />
@@ -386,8 +387,8 @@ const Esg = () => {
                                                 <Timeline>
                                                     <Tween to={{ opacity: 1 }} >
                                                         <Slide ref={communityRef}>
-                                                            <Card src={communityImg} text="Co-building for a Sustainable Community" top={40} left={10} />
-                                                            <Card src={conferenceImg} text="Cyberport FinTect for ESG Conference 2021" top={10} left={55} />
+                                                            <Card src={communityImg} text={Text.card.community} top={40} left={10} />
+                                                            <Card src={conferenceImg} text={Text.card.conference} top={10} left={55} />
                                                             <CommunityText top={60} left={50} />
                                                         </Slide>
                                                     </Tween>
@@ -395,7 +396,7 @@ const Esg = () => {
                                                 <Timeline>
                                                     <Tween to={{ opacity: 1 }} onStart={() => gsap.to(communityRef.current, ({ opacity: 0 }))}>
                                                         <Slide ref={recyclingRef}>
-                                                            <Card src={recyclingImg} text="Recycling" top={40} left={10} />
+                                                            <Card src={recyclingImg} text={Text.card.recycling} top={40} left={10} />
                                                             <RecyclingText top={50} left={50} />
                                                         </Slide>
                                                     </Tween>
@@ -403,7 +404,7 @@ const Esg = () => {
                                                 <Timeline>
                                                     <Tween to={{ opacity: 1 }} onStart={() => gsap.to(recyclingRef.current, ({ opacity: 0 }))}>
                                                         <Slide ref={parkingRef}>
-                                                            <Card src={parkingImg} text="EVs and Smart Parking System" top={15} left={60} />
+                                                            <Card src={parkingImg} text={Text.card.parking} top={15} left={60} />
                                                             <ParkingText top={45} left={8} />
                                                         </Slide>
                                                     </Tween>
@@ -411,15 +412,15 @@ const Esg = () => {
                                                 <Timeline>
                                                     <Tween to={{ opacity: 1 }} onStart={() => gsap.to(parkingRef.current, ({ opacity: 0 }))}>
                                                         <Slide ref={roomRef}>
-                                                            <Card src={sustainableImg} text="Sustainable Food Sourcing" top={40} left={10} />
-                                                            <Card src={roomImg} text="Smart Room Control Technology" top={10} left={60} />
+                                                            <Card src={sustainableImg} text={Text.card.sustainable} top={40} left={10} />
+                                                            <Card src={roomImg} text={Text.card.room} top={10} left={60} />
                                                         </Slide>
                                                     </Tween>
                                                 </Timeline>
                                                 <Timeline>
                                                     <Tween to={{ opacity: 1 }} onStart={() => gsap.to(roomRef.current, ({ opacity: 0 }))}>
                                                         <Slide>
-                                                            <Card src={cyberportImg} text="Cyberport 5 Expansion" top={30} left={60} />
+                                                            <Card src={cyberportImg} text={Text.card.cyberport} top={30} left={60} />
                                                             <CyberportText top={40} left={5} />
                                                         </Slide>
                                                     </Tween>
@@ -463,52 +464,28 @@ const Card = forwardRef(({ src, text, top, left }, ref) => {
 
 const RecyclingText = ({ top, left }) => (
     <TextCard top={top} left={left}>
-        On our campus, the 'Big Belly' recycling bins are solar powered, installed with an intelligent sensor and compressor compacting recycled content when they are full and sends notifications to cleaning staff for collection.
+        {Text.recycling}
     </TextCard>
 )
 
 const ParkingText = ({ top, left }) => (
     <TextCard top={top} left={left}>
-        <div>Cyberport incubatees, oneCHARGE Solutions and LHC New Energy Company, applied an EV charger system at carpark areas to boost convenience for EV owners and encourage a cleaner alternative method to travel.</div>
-        <div>The Smart Car Parking System improvement project boosted efficiency by allowing contactless free parking redemption, feasibilities of e-payment and providing availability of parking spaces via an application.</div>
+        {Text.parking.map(content => <div>{content}</div>)}
     </TextCard>
 )
 
 
 const CyberportText = ({ top, left }) => (
     <TextCard top={top} left={left}>
-        <div>Sustainable features in our expansion efforts include:</div>
-        <ul>
-            <li>Designated part of the low zone floor spaces as greenery open
-                spaces, sunset observation decks and naturally ventilated wind
-                orridors
-            </li>
-
-            <li>Revitalisation of the existing waterfront park landscaping features and smart facilities</li>
-
-            <li>Modular Integrated Construction (MiC) Technology implemented</li>
-            <li>Observes BEAM plus certification criteria and aims for at least
-                30% of construction waste is recycled during the construction
-                processes
-            </li>
-        </ul>
+        <div>{Text.cyberport.main}</div>
+        <ul>{Text.cyberport.points.map(point => <li>{point}</li>)}</ul>
     </TextCard>
 )
 
 
 const CommunityText = ({ top, left }) => (
     <TextCard top={top} left={left}>
-        <ul>
-            <li>
-                Joined the 4T Partnership established by the HKSAR Government to align targets and actions in achieving carbon neutrality by 2050
-            </li>
-
-            <li>
-                "Cyberport FinTech for ESG Conference 2021" allows businesses to explore how to enhance efficiency when implementing ESG measures
-            </li>
-
-            <li>"Shaping a Sustainable Financial Ecosystem: How to Integrate ESG Factors with FinTech" provides a platform for sharing how the industry is promoting global ESG and sustainable development</li>
-        </ul>
+        <ul>{Text.community.points.map(point => <li>{point}</li>)}</ul>
     </TextCard>
 )
 
@@ -516,4 +493,4 @@ const CommunityText = ({ top, left }) => (
 
 
 
-export default Esg
+export default Desktop

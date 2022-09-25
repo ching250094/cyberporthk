@@ -1,28 +1,9 @@
 import styled from 'styled-components'
 import { Tween } from 'react-gsap'
 import { Controller, Scene } from 'react-scrollmagic'
+import breakpoints from '../../style/breakpoints'
+import useMediaQuery from '../../hooks/useMediaQuery'
 import { photoGrid } from './boardPhotos'
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: radial-gradient(circle, rgba(220,235,255,1) 14%, rgba(198,223,255,1) 35%, rgba(118,180,255,1) 60%, rgba(80,157,249,1) 81%, rgba(12,119,247,1) 96%);
-
-    .section {
-        height: 30vh;
-    }
-`
-
-const Trigger = styled.div`
-    margin: 2rem auto;
-`
-
-const BoardRow = styled.div`
-    display: flex;
-    position: relative;
-    margin-top: 13rem;
-`
 
 const Photo = styled.img`   
     width: 20rem;
@@ -37,6 +18,43 @@ const PhotoContainer = styled.div`
     margin-right: 3rem;
 `
 
+const BoardRow = styled.div`
+    display: flex;
+    position: relative;
+    margin-top: 13rem;
+`
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(circle, rgba(220,235,255,1) 14%, rgba(198,223,255,1) 35%, rgba(118,180,255,1) 60%, rgba(80,157,249,1) 81%, rgba(12,119,247,1) 96%);
+
+    .section {
+        height: 30vh;
+    }
+
+    @media only screen and ${breakpoints.mobile} {
+        ${PhotoContainer} {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        ${Photo} {
+            width: 100%;
+        }
+        
+        ${BoardRow} {
+            margin-top: 0;
+        }
+    }
+
+`
+
+const Trigger = styled.div`
+    margin: 2rem auto;
+`
+
 const TitleTag = styled.div`
     align-self: flex-end;
     background-color: #0C77F7;
@@ -49,27 +67,35 @@ const TitleTag = styled.div`
 `
 
 export default function DirectorBoard({ setModal }) {
+    const isDesktop = useMediaQuery('desktop')
+
     return (
         <Container>
-            <TitleTag>Annual Summary</TitleTag>
+            {isDesktop && <TitleTag>Annual Summary</TitleTag>}
             <Trigger id="trigger" />
-            <Controller>
-                <Scene
-                    offset={400}
-                    triggerElement="#trigger"
-                    triggerHook="onEnter"
-                    duration={2500}
-                >
-                    {(progress) => (
-                        <div>
-                            {photoGrid.map(renderRow(progress))}
-                        </div>
-                    )}
-                </Scene>
-            </Controller>
+            {isDesktop ? <Desktop setModal={setModal} /> : <Mobile setModal={setModal} />}
             <div className="section" />
         </Container>
     )
+}
+
+function Desktop({ setModal }) {
+    return (
+        <Controller>
+            <Scene
+                offset={400}
+                triggerElement="#trigger"
+                triggerHook="onEnter"
+                duration={2500}>
+                {(progress) => (
+                    <div>
+                        {photoGrid.map(renderRow(progress))}
+                    </div>
+                )}
+            </Scene>
+        </Controller>
+    )
+
 
     function renderRow(progress) {
         return (photos, index) => (
@@ -84,9 +110,7 @@ export default function DirectorBoard({ setModal }) {
                             </Transformer>) :
                             <PhotoContainer>
                                 <Photo src={path} key={index} />
-                            </PhotoContainer>
-                        }
-
+                            </PhotoContainer>}
                     </div>
                 ))}
             </BoardRow>
@@ -108,4 +132,25 @@ function Transformer({ children, progress }) {
         </Tween>
 
     )
+}
+
+function Mobile({ setModal }) {
+    return (
+        <div>
+            {photoGrid.map(renderRow)}
+        </div>
+    )
+
+    function renderRow(photos, index) {
+        return (
+            <BoardRow key={index}>
+                {photos.map((path, idx) => (
+                    <div onClick={() => setModal({ contents: 123 })}>
+                        <PhotoContainer>
+                            <Photo src={path} key={idx} />
+                        </PhotoContainer>
+                    </div>
+                ))}
+            </BoardRow>)
+    }
 }

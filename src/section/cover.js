@@ -1,13 +1,7 @@
 import styled from 'styled-components'
 import CyberportSvg from '../assets/images/cyberportLogo.svg'
+import breakpoints from '../style/breakpoints'
 
-const Container = styled.div`
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(231,239,255,1) 11%, rgba(205,222,255,1) 24%, rgba(196,216,255,1) 33%, rgba(163,194,255,1) 40%, rgba(163,194,255,1) 55%, rgba(205,222,255,1) 72%, rgba(231,239,255,1) 88%, rgba(255,255,255,1) 100%);
-`
 
 const CyberportLogo = styled.img.attrs({ src: CyberportSvg })`
     width: 13rem;
@@ -31,9 +25,41 @@ const TitleContainer = styled.div`
 const SubTitleContainer = styled.div`
     font-size: 1.8rem;
     text-align: center;
-    margin-bottom:4rem;
+    margin-bottom: 4rem;
     line-height: 1.5;
     color: #FFFFFF;
+`
+
+const Container = styled.div`
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(231,239,255,1) 11%, rgba(205,222,255,1) 24%, rgba(196,216,255,1) 33%, rgba(163,194,255,1) 40%, rgba(163,194,255,1) 55%, rgba(205,222,255,1) 72%, rgba(231,239,255,1) 88%, rgba(255,255,255,1) 100%);
+
+    @media only screen and ${breakpoints.mobile} {
+        justify-content: center;
+
+        > div {
+            margin-top: 2rem;
+        }
+
+        ${CyberportLogo} {
+            width: 9rem;
+            margin-top: 0;
+            margin-right: 2rem;
+        }
+
+        ${TitleContainer} {
+            margin-top: 2rem;
+            font-size: 2.5rem;
+        }
+
+        ${SubTitleContainer} {
+            font-size: 1.5rem;
+        }
+        
+    }
 `
 
 export default function CoverSection() {

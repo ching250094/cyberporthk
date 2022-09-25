@@ -69,8 +69,7 @@ const Summary = () => (
                 <Scene
                     triggerHook="onLeave"
                     duration={4000}
-                    pin
-                >
+                    pin >
                     {(progress) => (
                         <div className="contentsContainer">
                             <Timeline totalProgress={progress} paused>

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import CultivationPng from '../../assets/images/summary/cultivation.png'
 import CultivationBg from '../../assets/images/summary/cultivation_bg.png'
+import breakpoints from '../../style/breakpoints'
 import MainContainer, { Heading, TitleTag } from './mainContainer'
 import { Container, Statistics, Data } from './shared'
 
@@ -8,6 +9,11 @@ const ImageGroup = styled.div`
     display: flex;
     img {
         width: 40rem;
+    }
+    @media only screen and ${breakpoints.mobile} {
+        img {
+            width: 27rem;
+        }
     }
 `
 

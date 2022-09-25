@@ -1,8 +1,8 @@
 import useMediaQuery from '../../hooks/useMediaQuery'
 import Desktop from './Desktop'
-import Mobile from './Mobile'
+import Mobile from './mobile'
 
-export default function Circles() {
+export default function Esg() {
     const isDesktop = useMediaQuery('desktop')
     return (
         <>
