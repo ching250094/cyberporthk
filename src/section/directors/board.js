@@ -36,12 +36,14 @@ const Container = styled.div`
 
     @media only screen and ${breakpoints.mobile} {
         ${PhotoContainer} {
-            margin-left: 0;
-            margin-right: 0;
+            margin-left: -2px;
+            margin-right: -2px;
+            margin-bottom: -4px;
         }
 
         ${Photo} {
             width: 100%;
+            display: block;
         }
         
         ${BoardRow} {

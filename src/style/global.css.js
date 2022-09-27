@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import breakpoints from './breakpoints'
 
+
 export default createGlobalStyle`
     :root {
         font-size: 16px;
@@ -13,7 +14,7 @@ export default createGlobalStyle`
     body {
         margin:0;
         padding:0;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: "TruenoLt";
 
         #root {
             width:100%;

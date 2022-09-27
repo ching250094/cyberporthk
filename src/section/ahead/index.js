@@ -7,6 +7,8 @@ import RightSideSvg from '../../assets/images/ahead/asset_3.png'
 import LeftSideBgImg from '../../assets/images/ahead/asset_4.png'
 import MiddleBgSideImg from '../../assets/images/ahead/asset_5.png'
 import CyberportImg from '../../assets/images/ahead/cyberport.png'
+import breakpoints from '../../style/breakpoints'
+import useMediaQuery from '../../hooks/useMediaQuery'
 
 const Container = styled.div`
     display: flex;
@@ -21,6 +23,12 @@ const Container = styled.div`
         height: 100%;
         width: 100%;
       }
+      @media only screen and ${breakpoints.mobile} {
+        padding-bottom: 20vh;
+        .section {
+            height: 0;
+        }
+    }
 `
 
 const Trigger = styled.div`
@@ -83,6 +91,12 @@ const Contents = styled.div`
       * + * {
         margin-top: 1rem;
       }
+
+      @media only screen and ${breakpoints.mobile} {
+        > * {
+            width: 100%;
+        }
+    }
 `
 
 const Group = styled.div`
@@ -93,14 +107,40 @@ const Group = styled.div`
 
 const StaticContents = styled.div`
       margin-top: 5rem;
+
+      @media only screen and ${breakpoints.mobile} {
+        > ${Contents}:last-child {
+            padding:0 10% 0;
+            align-items: flex-start;
+        }
+    }
 `
 
 const Photo = styled.img`
     margin: 5% 0;
     width: 60%;
+
+    @media only screen and ${breakpoints.mobile} {
+        width: 100%;
+    }
 `
 
+function usePosition() {
+    const isDesktop = useMediaQuery('desktop')
+    return isDesktop ? {
+        left: { minWidth: 450, maxWidth: 460, transform: "translate(154%, 0)", to: "translate(167%, 0)" },
+        middle: { minWidth: 730, maxWidth: 830, transform: "translate(34%, 0)" },
+        right: { minWidth: 300, maxWidth: 330, transform: "translate(-15%, 0)", to: "translate(-15%, 0)" }
+    } : {
+        left: { minWidth: 230, maxWidth: 250, transform: "translate(150%, 0)", to: "translate(167%, 0)" },
+        middle: { minWidth: 450, maxWidth: 460, transform: "translate(34%, 0)" },
+        right: { minWidth: 160, maxWidth: 180, transform: "translate(0%, 0)", to: "translate(-15%, 0)" }
+    }
+
+}
+
 export default function LookingAhead() {
+    const { left, middle, right } = usePosition()
     return (
         <Container>
             <div className="section" />
@@ -110,26 +150,25 @@ export default function LookingAhead() {
                 <div>AHEAD</div>
             </Title>
             <Controller>
-                <Scene triggerHook="onEnter" duration={1200} offset={800} triggerElement="#ahead-trigger">
+                <Scene triggerHook="onEnter" duration={600} offset={800} triggerElement="#ahead-trigger">
                     {(progress) => (
                         <div className="contentsContainer">
                             <Timeline totalProgress={progress} paused>
                                 <Puzzles>
-                                    <Tween to={{ transform: "translate(167%, 0)" }} totalProgress={progress}>
-                                        <Group transform="translate(150%, 0)">
-                                            <Background src={LeftSideBgImg} minWidth={450} maxWidth={460} bottom={7} left={10} />
-                                            <Item src={LeftSideSvg} minWidth={450} maxWidth={460} zIndex={22} />
+                                    <Tween to={{ transform: left.to }}>
+                                        <Group transform={left.transform}>
+                                            <Background src={LeftSideBgImg} minWidth={left.minWidth} maxWidth={left.maxWidth} bottom={7} left={10} />
+                                            <Item src={LeftSideSvg} minWidth={left.minWidth} maxWidth={left.maxWidth} zIndex={22} />
                                         </Group>
                                     </Tween>
                                     <Tween>
-                                        <Group transform="translate(34%, 0)">
-
-                                            <Item src={MiddleSideSvg} minWidth={730} maxWidth={830} zIndex={20} />
+                                        <Group transform={middle.transform}>
+                                            <Item src={MiddleSideSvg} minWidth={middle.minWidth} maxWidth={middle.maxWidth} zIndex={20} />
                                         </Group>
                                     </Tween>
                                     <Tween to={{ transform: "translate(-15%, 0)" }} totalProgress={progress}>
                                         <Group>
-                                            <Item src={RightSideSvg} minWidth={300} maxWidth={330} marginTop={47} zIndex={20} />
+                                            <Item src={RightSideSvg} minWidth={right.minWidth} maxWidth={right.maxWidth} marginTop={47} zIndex={20} />
                                         </Group>
                                     </Tween>
                                 </Puzzles>
