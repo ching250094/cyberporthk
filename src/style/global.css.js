@@ -14,7 +14,7 @@ export default createGlobalStyle`
     body {
         margin:0;
         padding:0;
-        font-family: "TruenoLt";
+        font-family: "TruenoLt", Arial, Helvetica, sans-serif;
 
         #root {
             width:100%;
