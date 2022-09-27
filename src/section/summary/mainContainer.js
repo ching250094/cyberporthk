@@ -42,7 +42,7 @@ const Container = styled.div`
 
     ${p => p.css}
 
-     @media only screen and ${breakpoints.mobile} {
+     @media only screen and ${breakpoints.pad} {
         ${Heading} {
             font-size: 1.7rem;
         }

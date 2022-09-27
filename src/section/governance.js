@@ -80,7 +80,7 @@ const Box = styled.div`
         width: 7rem;
         margin-bottom: 1rem;
     }
-    @media only screen and ${breakpoints.mobile} {
+    @media only screen and ${breakpoints.pad} {
         width: 70%;
     }
 `

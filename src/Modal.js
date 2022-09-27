@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import closeSvg from './assets/images/button/close.svg'
 import backgroundImg from './assets/images/directors/profile/background.png'
 import photo_1Img from './assets/images/directors/profile/photo_1.png'
+import breakpoints from './style/breakpoints'
 
 const openStyle = css`
     animation: slidein .5s cubic-bezier(.78,.14,.15,.86);
@@ -71,6 +72,11 @@ const Card = styled.div`
     box-shadow: 6px 6px 13px #C8C8C8;
     display: flex;
     align-items: center;
+
+    @media only screen and ${breakpoints.pad} {
+        max-width: calc(100vw - 35px);
+        flex-direction: column-reverse;
+    }
 `
 
 const Header = styled.div`
@@ -121,6 +127,13 @@ const Background = styled.div`
         content: "";
         border-radius: 25px;
     }
+
+    @media only screen and ${breakpoints.pad} {
+        min-height: 400px;
+        min-height: 500px;
+        min-width:100%;
+        max-width:100%;
+    }
 `
 
 const Position = styled.div`
@@ -129,6 +142,10 @@ const Position = styled.div`
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     font-weight: 600;
+
+    @media only screen and ${breakpoints.pad} {
+        padding-left: 15px;
+    }
 `
 
 const Name = styled.div`
@@ -136,6 +153,9 @@ const Name = styled.div`
     color: #0055AD;
     margin-bottom: 1rem;
     font-weight: 600;
+    @media only screen and ${breakpoints.pad} {
+        padding-left: 15px;
+    }
 `
 
 const Text = styled.div`
@@ -150,10 +170,19 @@ const Text = styled.div`
 const RightSideWrapper = styled.div`
     margin-right: 2%;
     margin-top: calc(2rem + 1.3rem + 1rem + 1rem + 0.5rem);
+
+    @media only screen and ${breakpoints.pad} {
+        margin-top: 2rem;
+        margin-right: 0:
+    }
 `
 
 const Photo = styled.img`
     max-width: 500px;
+
+    @media only screen and ${breakpoints.pad} {
+        max-width: 300px;
+    }
 `
 
 export default function Modal({ contents, onClose, isOpen }) {

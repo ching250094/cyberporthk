@@ -34,7 +34,7 @@ const Container = styled.div`
         height: 30vh;
     }
 
-    @media only screen and ${breakpoints.mobile} {
+    @media only screen and ${breakpoints.pad} {
         ${PhotoContainer} {
             margin-left: -2px;
             margin-right: -2px;

@@ -23,7 +23,7 @@ const Container = styled.div`
         height: 100%;
         width: 100%;
       }
-      @media only screen and ${breakpoints.mobile} {
+      @media only screen and ${breakpoints.pad} {
         padding-bottom: 20vh;
         .section {
             height: 0;
@@ -92,7 +92,7 @@ const Contents = styled.div`
         margin-top: 1rem;
       }
 
-      @media only screen and ${breakpoints.mobile} {
+      @media only screen and ${breakpoints.pad} {
         > * {
             width: 100%;
         }
@@ -108,7 +108,7 @@ const Group = styled.div`
 const StaticContents = styled.div`
       margin-top: 5rem;
 
-      @media only screen and ${breakpoints.mobile} {
+      @media only screen and ${breakpoints.pad} {
         > ${Contents}:last-child {
             padding:0 10% 0;
             align-items: flex-start;
@@ -120,7 +120,7 @@ const Photo = styled.img`
     margin: 5% 0;
     width: 60%;
 
-    @media only screen and ${breakpoints.mobile} {
+    @media only screen and ${breakpoints.pad} {
         width: 100%;
     }
 `
@@ -150,7 +150,7 @@ export default function LookingAhead() {
                 <div>AHEAD</div>
             </Title>
             <Controller>
-                <Scene triggerHook="onEnter" duration={600} offset={800} triggerElement="#ahead-trigger">
+                <Scene triggerHook="onEnter" duration={700} offset={800} triggerElement="#ahead-trigger">
                     {(progress) => (
                         <div className="contentsContainer">
                             <Timeline totalProgress={progress} paused>
