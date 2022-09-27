@@ -37,7 +37,7 @@ const Container = styled.div`
     height: 100vh;
     background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(231,239,255,1) 11%, rgba(205,222,255,1) 24%, rgba(196,216,255,1) 33%, rgba(163,194,255,1) 40%, rgba(163,194,255,1) 55%, rgba(205,222,255,1) 72%, rgba(231,239,255,1) 88%, rgba(255,255,255,1) 100%);
 
-    @media only screen and ${breakpoints.mobile} {
+    @media only screen and ${breakpoints.pad} {
         justify-content: center;
 
         > div {

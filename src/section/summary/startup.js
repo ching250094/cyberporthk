@@ -13,7 +13,7 @@ const ImageGroup = styled.div`
         margin-right: 5rem;
     }
 
-    @media only screen and ${breakpoints.mobile} {
+    @media only screen and ${breakpoints.pad} {
         img {
             width: 20rem;
         }
@@ -74,7 +74,7 @@ const Container = styled.div`
         }
     }
 
-    @media only screen and ${breakpoints.mobile} {
+    @media only screen and ${breakpoints.pad} {
         margin-top: 2rem;
         flex-direction: column;
 

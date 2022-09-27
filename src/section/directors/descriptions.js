@@ -28,7 +28,7 @@ const Container = styled.div`
     background: linear-gradient(360deg, rgba(12,119,247,1) 14%, rgba(80,157,249,1) 35%, rgba(118,180,255,1) 47%, rgba(167,206,255,1) 65%, rgba(198,223,255,1) 78%, rgba(220,235,255,1) 89%);
 
 
-    @media only screen and ${breakpoints.mobile} {
+    @media only screen and ${breakpoints.pad} {
         justify-content: flex-start;
         height: auto;
         padding-top: 10rem;

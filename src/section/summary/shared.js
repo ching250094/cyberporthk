@@ -39,7 +39,7 @@ export const Statistics = styled.div`
         color: ${p => p.dataColor};
     }
 
-    @media only screen and ${breakpoints.mobile} {
+    @media only screen and ${breakpoints.pad} {
         width: 100%;
 
         > div {

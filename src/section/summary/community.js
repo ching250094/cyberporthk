@@ -10,7 +10,7 @@ const ImageGroup = styled.div`
     img {
         width: 40rem;
     }
-    @media only screen and ${breakpoints.mobile} {
+    @media only screen and ${breakpoints.pad} {
         img {
             width: 24rem;
         }
