@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/cyberporthk/static/css/main.13b1c26b.css",
-    "main.js": "/cyberporthk/static/js/main.ad529a73.js",
+    "main.js": "/cyberporthk/static/js/main.03d09062.js",
     "static/media/cyberport.png": "/cyberporthk/static/media/cyberport.52d5230dbb250f8f2239.png",
     "static/media/asset_2.png": "/cyberporthk/static/media/asset_2.5380c33528bf41e6a1fd.png",
     "static/media/photo_1.png": "/cyberporthk/static/media/photo_1.0b761609b81af22ec515.png",
@@ -77,10 +77,10 @@
     "static/media/widget_3.svg": "/cyberporthk/static/media/widget_3.fe381093c278a07d3cc6ea6b6a6c1fd4.svg",
     "static/media/close.svg": "/cyberporthk/static/media/close.08233535a9321b39bf5f4a13e34fede0.svg",
     "main.13b1c26b.css.map": "/cyberporthk/static/css/main.13b1c26b.css.map",
-    "main.ad529a73.js.map": "/cyberporthk/static/js/main.ad529a73.js.map"
+    "main.03d09062.js.map": "/cyberporthk/static/js/main.03d09062.js.map"
   },
   "entrypoints": [
     "static/css/main.13b1c26b.css",
-    "static/js/main.ad529a73.js"
+    "static/js/main.03d09062.js"
   ]
 }
