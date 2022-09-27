@@ -1,0 +1,133 @@
+@font-face {
+  font-family: "TruenoBd";
+  src: local("TruenoBd"),
+    url("../assets/fonts/TruenoBd.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoBdIt";
+  src: local("TruenoBdIt"),
+    url("../assets/fonts/TruenoBdIt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoBdOl";
+  src: local("TruenoBdOl"),
+    url("../assets/fonts/TruenoBdOl.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoBdOlIt";
+  src: local("TruenoBdOlIt"),
+    url("../assets/fonts/TruenoBdOlIt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoBlk";
+  src: local("TruenoBlk"),
+    url("../assets/fonts/TruenoBlk.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoBlkIt";
+  src: local("TruenoBlkIt"),
+    url("../assets/fonts/TruenoBlkIt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoBlkOl";
+  src: local("TruenoBlkOl"),
+    url("../assets/fonts/TruenoBlkOl.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoBlkOlIt";
+  src: local("TruenoBlkOlIt"),
+    url("../assets/fonts/TruenoBlkOlIt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoExBd";
+  src: local("TruenoExBd"),
+    url("../assets/fonts/TruenoExBd.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoExBdIt";
+  src: local("TruenoExBdIt"),
+    url("../assets/fonts/TruenoExBdIt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoExBdOl";
+  src: local("TruenoExBdOl"),
+    url("../assets/fonts/TruenoExBdOl.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoExBdOlIt";
+  src: local("TruenoExBdOlIt"),
+    url("../assets/fonts/TruenoExBdOlIt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoLt";
+  src: local("TruenoLt"),
+    url("../assets/fonts/TruenoLt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoLtIt";
+  src: local("TruenoLtIt"),
+    url("../assets/fonts/TruenoLtIt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoRg";
+  src: local("TruenoRg"),
+    url("../assets/fonts/TruenoRg.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoRgIt";
+  src: local("TruenoRgIt"),
+    url("../assets/fonts/TruenoRgIt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoSBd";
+  src: local("TruenoSBd"),
+    url("../assets/fonts/TruenoSBd.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoSBdIt";
+  src: local("TruenoSBdIt"),
+    url("../assets/fonts/TruenoSBdIt.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoUltBlk";
+  src: local("TruenoUltBlk"),
+    url("../assets/fonts/TruenoUltBlk.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: "TruenoUltBlkIt";
+  src: local("TruenoUltBlkIt"),
+    url("../assets/fonts/TruenoUltBlkIt.otf") format("OpenType");
+}
+
+
+@font-face {
+  font-family: "TruenoUltLt";
+  src: local("TruenoUltLt"),
+    url("../assets/fonts/TruenoUltLt.otf") format("OpenType");
+}
+
+
+@font-face {
+  font-family: "TruenoUltLtIt";
+  src: local("TruenoUltLtIt"),
+    url("../assets/fonts/TruenoUltLtIt.otf") format("OpenType");
+}

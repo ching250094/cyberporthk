@@ -4,6 +4,7 @@ import { Timeline, Tween } from 'react-gsap'
 import MissionSvg from '../assets/images/governance/mission.svg'
 import ExpectationSvg from '../assets/images/governance/expectations.svg'
 import GrowthSvg from '../assets/images/governance/growth.svg'
+import breakpoints from '../style/breakpoints'
 
 const AnimationContainer = styled.div`
     overflow: hidden;
@@ -79,6 +80,9 @@ const Box = styled.div`
         width: 7rem;
         margin-bottom: 1rem;
     }
+    @media only screen and ${breakpoints.mobile} {
+        width: 70%;
+    }
 `
 
 const Animation = () => {
@@ -141,7 +145,7 @@ const Animation = () => {
                                                     <div>meeting stakeholders' expectations,</div>
                                                 </Box>
                                                 <Box margin="2.5rem 0">
-                                                    <img src={ExpectationSvg} />
+                                                    <img src={GrowthSvg} />
                                                     <div>and attaining sustainable growth.</div>
                                                 </Box>
                                                 <Box margin="5rem 0">
