@@ -31,11 +31,23 @@ const SubTitleContainer = styled.div`
 `
 
 const Container = styled.div`
+    position: relative;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(231,239,255,1) 11%, rgba(205,222,255,1) 24%, rgba(196,216,255,1) 33%, rgba(163,194,255,1) 40%, rgba(163,194,255,1) 55%, rgba(205,222,255,1) 72%, rgba(231,239,255,1) 88%, rgba(255,255,255,1) 100%);
+
+    &:before{
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        top: 40%;
+        left: -50%;
+        z-index: -1;
+        background: radial-gradient(ellipse closest-side at 50% 50%, rgba(117, 156, 245, 1) 0%, rgba(124, 161, 245, 1) 12.9%, rgba(155, 184, 248, 1) 36.5%, rgba(185, 207, 251, 1) 54.9%, rgba(220, 231, 253, 1) 72%, rgba(237, 242, 253, 1) 83.3%, rgba(247, 249, 254, 1) 100%);
+        transform: rotate(90deg);
+    }
 
     @media only screen and ${breakpoints.pad} {
         justify-content: center;
@@ -71,7 +83,8 @@ export default function CoverSection() {
                 <div>Annual report 2022</div>
             </TitleContainer>
             <SubTitleContainer>
-                <div>Since 2004, Cyberport has been</div>
+                <div>Since 2004,</div>
+                <div>Cyberport has been</div>
                 <div>helping over 1,650 startups</div>
             </SubTitleContainer>
         </Container>

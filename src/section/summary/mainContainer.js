@@ -50,10 +50,7 @@ const Container = styled.div`
         ${ContentContainer} {
             margin-left: 3rem;
             margin-right: 3rem;
-        }
-
-        ${ImageGroup}{
-            bottom: 15%;
+            margin-top: 2.5rem;
         }
     }
 `
