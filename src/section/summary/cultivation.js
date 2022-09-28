@@ -12,7 +12,7 @@ const ImageGroup = styled.div`
     }
     @media only screen and ${breakpoints.pad} {
         img {
-            width: 27rem;
+            width: 20rem;
         }
     }
 `
