@@ -36,17 +36,6 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
-
-    &:before{
-        content: "";
-        position: absolute;
-        width: 200%;
-        height: 200%;
-        top: 40%;
-        left: -50%;
-        z-index: -1;
-        background: radial-gradient(ellipse closest-side at 50% 50%, rgba(117, 156, 245, 1) 0%, rgba(124, 161, 245, 1) 12.9%, rgba(155, 184, 248, 1) 36.5%, rgba(185, 207, 251, 1) 54.9%, rgba(220, 231, 253, 1) 72%, rgba(237, 242, 253, 1) 83.3%, rgba(247, 249, 254, 1) 100%);
-        transform: rotate(90deg);
     }
 
     @media only screen and ${breakpoints.pad} {
