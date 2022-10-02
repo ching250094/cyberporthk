@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import styled, { css } from 'styled-components'
+import { useState, Suspense } from 'react'
+import styled from 'styled-components'
+import BackgroundImg from './assets/images/cover/background.png'
 import CoverSection from './section/cover'
 import SloganSection from './section/slogan'
 import AnnualSummary from './section/summary'
@@ -10,14 +11,22 @@ import Governance from './section/governance'
 import LookingAhead from './section/ahead'
 import Modal from './Modal'
 
+const Background = styled.div`
+  background: url(${BackgroundImg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+`
 
 function App() {
   const [modal, setModal] = useState()
 
   return (
     <div className="app">
-      <CoverSection />
-      <SloganSection />
+      <Background>
+        <CoverSection />
+        <SloganSection />
+      </Background>
       <AnnualSummary />
       <Directors setModal={setModal} />
       <Circles />
