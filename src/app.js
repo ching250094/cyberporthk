@@ -34,7 +34,7 @@ function App() {
       <Governance />
       <LookingAhead />
       <Modal contents={modal?.contents} onClose={() => setModal()} isOpen={modal} />
-    </div >
+    </div>
   );
 }
 
